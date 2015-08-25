@@ -41,16 +41,21 @@
 			</div>
 		</div>
 	</section>
-	<section id="home_quote" class="bg-danger">
+	<section id="home_quote" class="bg-danger hidden-xs">
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-xs-12">
-					Quote Widget
+					<h2>Get a Free Quote for your next event.</h2>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 text-center">
-					
+					<form>
+						<div class="form-group">
+							<input type="number" class="form-control">
+						</div>
+						
+					</form>
 				</div>
 				<div class="col-xs-12 col-sm-6 text-center">
 					
@@ -89,5 +94,9 @@
 			</div>
 		</div>
 	</section>
+	<span class="home_login btn-group">
+		<a href="<%=new_user_session_path%>" class="login btn-primary btn">Login</a>
+		<a href=" <%=new_user_registration_path%>" class="signup btn-success btn">Signup</a>
+	</span>
 </body>
 </html>
