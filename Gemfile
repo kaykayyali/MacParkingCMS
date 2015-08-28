@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'devise'
 gem 'twitter-bootstrap-rails'
-
+gem 'jquery-visibility-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
