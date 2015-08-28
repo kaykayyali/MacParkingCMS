@@ -115,6 +115,7 @@
 			content: content
 		}
 		$.post('/contactus', payload)
+		successBox("Sent Successfully")
 		$('#contactName').val('');
 		$('#contactPhone').val('');
 		$('#contactEmail').val('');
@@ -127,6 +128,7 @@
 			email: email
 		}
 		$.post('/subscribe', payload)
+		successBox("Sent Successfully")
 	}
 
 })

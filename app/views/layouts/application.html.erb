@@ -14,11 +14,15 @@
 	
 function alertBox (input) {
 	$('#alertText').text(input)
-	$('#alertBox').slideToggle(1000)
-	setTimeout(function() {$('#alertBox').slideToggle(1000)}, 5000)
+	$('#alertBox').slideToggle(500)
+	setTimeout(function() {$('#alertBox').slideToggle(500)}, 4000)
 }
-	
-</script>
 
+function successBox (input) {
+	$('#successText').text(input)
+	$('#successBox').slideToggle(500)
+	setTimeout(function() {$('#successBox').slideToggle(500)}, 4000)
+}
+</script>
 </body>
 </html>
