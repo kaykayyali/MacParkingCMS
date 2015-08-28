@@ -95,7 +95,7 @@
 			$('#estimateEmail').css('color', 'black')
 			return true
 		} else {
-			alertBox("Need an Email")
+			alertBox("Please enter your Email")
 			$('#estimateEmailLabel').css('color', 'red')
 			$('#estimateEmailLabel').css('font-size', '18px')
 			$('#estimateEmail').css('color', 'red')
