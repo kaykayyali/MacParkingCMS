@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Mac Parking Inc.</title>
+	 <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>
 </head>
 <body>      
 
@@ -41,24 +43,78 @@
 			</div>
 		</div>
 	</section>
-	<section id="home_quote" class="bg-danger hidden-xs">
+	<section id="home_quote" class="bg-success hidden-xs">
 		<div class="container">
 			<div class="row text-center">
 				<div class="col-xs-12">
-					<h2>Get a Free Quote for your next event.</h2>
+					<h2>Get a Free Estimate for your next event.</h2>
 				</div>
 			</div>
+			<br>
 			<div class="row">
 				<div class="col-xs-12 col-sm-6 text-center">
-					<form>
+					<h3>Party Information</h3>
+					<div class="col-xs-12">
 						<div class="form-group">
-							<input type="number" class="form-control">
+							<label>Address</label>
+						 <input id="autocomplete" class="form-control" placeholder="Address" onFocus="geolocate()" type="text"></input>
 						</div>
-						
-					</form>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label>Guest Count</label>
+							<input type="number" placeholder="Guest Count" class="form-control" id="guestCount">
+						</div>
+					</div>
+					<div class="col-xs-6">
+						<div class="form-group">
+							<label>Event Date</label>
+							<input type="date" value="<%= Date.today %>" class="form-control estimateDate">
+						</div>
+					</div>
+					<div class="col-xs-12">
+						<div class="form-group">
+							<label id="estimateEmailLabel">Your Email</label>
+						 	<input class="form-control" placeholder="Email" type="email" id='estimateEmail'></input>
+						 </div>
+					</div>
 				</div>
 				<div class="col-xs-12 col-sm-6 text-center">
-					
+					<div class="col-xs-12">
+						<h3>Estimate</h3>
+						<div class="estimateBox center-block bg-default">
+							<span class="lead estimate">
+							</span>
+						</div>
+					</div>
+					<br>
+					<br>
+					<div class="col-xs-12">
+						<button class="btn btn-default btn-lg btn-block" id="estimateBtn" style="font-size:30px;">
+							Estimate!
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id="home_quote" class="hidden-xs bg-danger">
+		<div class="container">
+			<div class="row text-center">
+				<div class="col-xs-12">
+					<h2>Subscribe to our newsletter and promotional deals!</h2>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-xs-12 center-block">
+					<div class="form-group">
+						<label>Email</label>
+						<input type="email" class="form-control" id="newsEmail">
+					</div>
+					<button class="btn btn-default btn-block" style="font-size:30px;">
+						Subscribe!
+					</button>
 				</div>
 			</div>
 		</div>
@@ -94,9 +150,64 @@
 			</div>
 		</div>
 	</section>
+	<div class="alert alert-danger text-center lead" id= "alertBox" style="display:none;">
+		
+	</div>
 	<span class="home_login btn-group">
 		<a href="<%=new_user_session_path%>" class="login btn-primary btn">Login</a>
 		<a href=" <%=new_user_registration_path%>" class="signup btn-success btn">Signup</a>
 	</span>
+<script>
+$('#newsEmail').on('keypress', function(event){
+	$('#estimateEmail').val($('#newsEmail').val())
+})
+$('#estimateEmail').on('keypress', function(event){
+	$('#newsEmail').val($('#estimateEmail').val())
+})
+$('#estimateBtn').on('click', function(event) {
+	if (emailValidate()) {
+		var guestCount = $('#guestCount').val()
+		var expectedCars = Math.ceil(guestCount / 2)
+		var attendants = Math.ceil(expectedCars / 15)
+		var estimate = attendants * 95 + 200
+		if (guestCount > 0 && estimate > 0) {
+			$('.estimate').text(estimate)
+		}
+	}
+})
+function emailValidate() {
+	if ($('#estimateEmail').val() != ''){
+		$('#estimateEmailLabel').css('color', 'black')
+		$('#estimateEmail').css('color', 'black')
+		return true
+	} else {
+		alertBox("Need an Email")
+		$('#estimateEmailLabel').css('color', 'red')
+		$('#estimateEmail').css('color', 'red')
+	}
+}
+function initAutocomplete() {
+  // Create the autocomplete object, restricting the search to geographical
+  // location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+      {types: ['geocode']});
+}
+	function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+    });
+  }
+}
+</script>
 </body>
 </html>

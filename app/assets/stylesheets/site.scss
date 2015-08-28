@@ -3,8 +3,8 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
  section {
 	width:100%;
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 90px;
+	padding-bottom: 90px;
  }
  .img-responsive {
  	display: inline-block;
@@ -12,8 +12,37 @@
 .center-block {
 	float:none;
 }
+.alert {
+	position:fixed;
+	top:0;
+	z-index:99999;
+	height:10vh;
+	width:100%;
+	color: white;
+	background-color:#d43f3a;
+	opacity:1;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+
+}
 .big {
 	font-size:80px;
+}
+.bg-danger{
+	background-color:#d43f3a;
+	color: white;
+}
+.estimateBox {
+	background-color: white;
+	border-radius: 10px;
+	width:75%;
+	border:1px solid lightgrey;
+	margin-bottom:15px;
+}
+.estimate {
+	font-size:80px;
+	margin:50px;
+	padding-top:50px;
 }
 .home_login{
 	position: absolute;
@@ -30,7 +59,6 @@
 	padding-top:10px;
 	padding-bottom:10px;
 	padding-right:15px;
-	// margin-right:-5px;
 }
 .signup{
 	display:inline-block;

@@ -4,11 +4,20 @@
   <title>MacParking</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
-
+<script>
+	
+function alertBox (input) {
+	$('#alertBox').text(input)
+	$('#alertBox').slideToggle(1000)
+	setTimeout(function() {$('#alertBox').slideToggle(1000)}, 5000)
+}
+	
+</script>
 </body>
 </html>
