@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828063154) do
+ActiveRecord::Schema.define(version: 20150831190541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,27 @@ ActiveRecord::Schema.define(version: 20150828063154) do
     t.boolean  "read",       default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer  "guest_count"
+    t.string   "sales_person",   default: "Eddie Kayyali"
+    t.string   "event_type",     default: "General"
+    t.string   "contact_name"
+    t.string   "contact_number"
+    t.string   "contact_email"
+    t.string   "street_address"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state",          default: "Florida"
+    t.integer  "staff"
+    t.decimal  "price"
+    t.boolean  "paid",           default: false
+    t.text     "notes"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -45,6 +66,7 @@ ActiveRecord::Schema.define(version: 20150828063154) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "role"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
