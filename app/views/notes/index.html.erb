@@ -1,0 +1,30 @@
+<script>
+	successBox('Signed in Successfully')
+</script>
+
+<section id="notes_main" class="bg-default" >
+	<div class="container slideIn">
+		<div class="row">
+			<div class="row text-right">
+				<h2><small>Welcome</small> <%= current_user.email%></h2>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xs-10">
+					<h3>Notes</h3>
+				</div>
+				<div class="col-xs-2">
+					<a href="/notes/new" class="btn btn-primary">New Note</a>
+				</div>
+				<div class="col-xs-12">
+					<h5>Note</h5>
+					<hr>
+					<h5>Note</h5>
+					<hr>
+					<h5>Note</h5>
+					<hr>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -8,21 +8,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
 <script>
-	
-function alertBox (input) {
+function alertBox(input) {
 	$('#alertText').text(input)
 	$('#alertBox').slideToggle(500)
 	setTimeout(function() {$('#alertBox').slideToggle(500)}, 4000)
 }
 
-function successBox (input) {
+function successBox(input) {
 	$('#successText').text(input)
 	$('#successBox').slideToggle(500)
 	setTimeout(function() {$('#successBox').slideToggle(500)}, 4000)
 }
 </script>
+<!-- ALERT -->
+	<div class="alert alert-danger text-center" id= "alertBox" style="display:none;">
+		<h3 id="alertText"></h3>
+	</div> 
+	<!-- END ALERT -->
+
+	<!-- SUCCESS -->
+	<div class="success alert-success text-center" id= "successBox" style="display:none;">
+		<h3 id="successText"></h3>
+	</div> 
+	<!-- END SUCCESS -->
+	<a href="/users/sign_out" data-method="delete">Sign_out</a>  
+<%= yield %>
+
 </body>
 </html>
