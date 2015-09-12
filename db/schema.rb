@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911184244) do
+ActiveRecord::Schema.define(version: 20150912230402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,15 +47,31 @@ ActiveRecord::Schema.define(version: 20150911184244) do
     t.datetime "updated_at",                               null: false
   end
 
+  create_table "note_locations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  create_table "note_types", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.string   "subject"
     t.text     "content"
     t.date     "date"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.integer  "note_type_id"
+    t.integer  "note_location_id"
   end
 
+  add_index "notes", ["note_location_id"], name: "index_notes_on_note_location_id", using: :btree
+  add_index "notes", ["note_type_id"], name: "index_notes_on_note_type_id", using: :btree
   add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|

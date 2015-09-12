@@ -12,6 +12,8 @@ class NotesController < ApplicationController
 		end
 	end
 	def new
+		@note_types = NoteType.all
+		@note_locations = NoteLocation.all
 		render 'new'
 	end
 	def show
