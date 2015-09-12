@@ -1,0 +1,24 @@
+<section id="notes" class="bg-default" >
+	<div class="container-fluid">
+		<div class="row text-right hidden-xs">
+			<h2><%= current_user.email%></h2>
+		</div>
+		<div class="row">
+				<%= form_tag('/notes') do -%>
+					<div class="form-group col-md-6">
+						<label>Subject</label>
+						<%= text_field_tag 'subject',nil,autofocus: true, class: "form-control" %>
+					</div>
+					<div class="form-group col-md-6">
+						<label>Date</label>
+						<%= date_field_tag 'date', Date.today, :class => "form-control" %>
+					</div>
+					<div class="form-group col-xs-12">
+						<label>Contents</label>
+						<%= text_area_tag 'content',nil, class: "form-control", rows: 10 %>
+					</div>
+					<%= submit_tag 'Save', :class => "btn btn-primary btn-block" %>
+				<% end -%>
+		</div>
+	</div>
+</section>

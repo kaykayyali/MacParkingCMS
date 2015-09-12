@@ -2,29 +2,58 @@
 	successBox('Signed in Successfully')
 </script>
 
-<section id="notes_main" class="bg-default" >
-	<div class="container slideIn">
-		<div class="row">
+<section id="notes" class="bg-default" >
+	<div class="container-fluid">
 			<div class="row text-right">
 				<h2><small>Welcome</small> <%= current_user.email%></h2>
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-xs-10">
-					<h3>Notes</h3>
-				</div>
-				<div class="col-xs-2">
-					<a href="/notes/new" class="btn btn-primary">New Note</a>
+				<div class="col-xs-12">
+					<a href="/notes/new" class="btn btn-primary btn-block">New Note</a>
 				</div>
 				<div class="col-xs-12">
-					<h5>Note</h5>
-					<hr>
-					<h5>Note</h5>
-					<hr>
-					<h5>Note</h5>
-					<hr>
+					<h3>Notes</h3>
 				</div>
 			</div>
-		</div>
+			<div class="row">
+				<div class="text-center">
+					<div class="col-xs-3 col-md-4">
+						<h5>Date</h5>
+					</div>
+					<div class="col-xs-4 col-md-4">
+						<h5>Subject</h5>
+					</div>
+					<div class="col-xs-5 col-md-4">
+						<h5>Created By</h5>
+					</div>
+					<ul class="list-unstyled" id="notesList">
+						<% @color = 1 %>
+						<% @notes.each do |note| %>
+							<% if @color == 1 %>
+								<li class="note clearfix">
+							<% @color = 2 %>
+							<% else %>
+								<li class="noteAlt clearfix">
+								<% @color = 1 %>
+							<% end %>
+									<a href="#">
+										<span class="lead">
+											<div class="col-xs-3 col-md-4">
+												<%= note.date %>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<%= note.subject %>
+											</div>
+											<div class="col-xs-5 col-md-4">
+												<%= User.find_by_id(note.user_id).email %>
+											</div>
+										</span>
+									<a href="#">
+								</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
 	</div>
 </section>
