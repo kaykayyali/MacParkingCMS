@@ -14,7 +14,10 @@ class NotesController < ApplicationController
 	def new
 		render 'new'
 	end
+	def show
+		@note = Note.find_by_id(params[:id])
+	end
 	def note_params
-			params.permit(:content, :date, :subject)
+		params.permit(:content, :date, :subject)
 	end
 end

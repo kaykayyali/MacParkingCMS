@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 get '/notes' => 'notes#index'
 post '/notes' => 'notes#create'
 get '/notes/new' => 'notes#new'
+get '/notes/:id' => 'notes#show'
 #testing
 get '/invoices/:id' => 'invoices#show'
 

@@ -1,0 +1,16 @@
+<section id="notes" class="bg-default" >
+	<div class="container-fluid">
+		<div class="row text-center">
+			<div class="col-xs-12 col-md-6 center-block">
+				<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+			</div>
+			<h3><%= @note.subject %></h3>
+		</div>
+		<div class="row text-left">
+			<div class="col-xs-12 col-md-8 center-block">
+			<hr>
+				<p><%= @note.content %></p>
+			</div>
+		</div>
+	</div>
+</section>
