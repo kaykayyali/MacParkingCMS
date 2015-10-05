@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   post '/contactus' => 'site#contact_us'
   post '/subscribe' => 'site#subscribe'
 
-
+#Employment
+get '/employment' => 'site#employment'
+post '/employment' => 'site#newapp'
 
 
 #notes
@@ -17,6 +19,9 @@ get '/notes' => 'notes#index'
 post '/notes' => 'notes#create'
 get '/notes/new' => 'notes#new'
 get '/notes/:id' => 'notes#show'
+
+#Home
+get '/:user_id/home' => 'home#index'
 #testing
 get '/invoices/:id' => 'invoices#show'
 

@@ -32,7 +32,9 @@ function successBox(input) {
 		<h3 id="successText"></h3>
 	</div> 
 	<!-- END SUCCESS -->
-	<a href="/users/sign_out" data-method="delete">Sign_out</a>  
+	<% if current_user.present? %>
+		<a href="/users/sign_out" data-method="delete">Sign_out</a> 
+	<% end%> 
 <%= yield %>
 
 </body>

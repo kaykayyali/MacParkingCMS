@@ -1,0 +1,46 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+		<a class="btn btn-primary" href="/">Home</a>
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><small>Welcome to</small> MAC Parking</h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><small>Welcome to</small> MAC Parking</h4>
+		</div>
+		<hr>
+		<div class="row">
+			<%= form_tag("/employment", method: "post") do %>
+				<div class="col-xs-12 col-md-6 form-group">
+					<%= label(nil, "First Name") %>
+					<%= text_field_tag(:first_name, nil,  class: "form-control") %> 
+				</div>
+				<div class="col-xs-12 col-md-6 form-group">
+					<%= label(nil, "Last Name") %>
+					<%= text_field_tag(:last_name, nil, class: "form-control") %> 
+				</div>
+				<div class="col-xs-12 col-md-6 form-group">
+					<%= label(nil, "Phone") %>
+					<%= text_field_tag(:phone, nil,  class: "form-control") %> 
+				</div>
+				<div class="col-xs-12 col-md-6 form-group">
+					<%= label(nil, "Email") %>
+					<%= email_field_tag(:email, nil, class: "form-control") %> 
+				</div>
+				<div class="col-xs-12 form-group">
+					<%= label(nil, "Address") %>
+					<input id="autocomplete" class="form-control" onFocus="geolocate()" type="text"></input>
+				</div>
+				<div class="col-xs-6 center-block form-group">
+					<div>
+						<%= label(nil, "Personal transportation?") %><br>
+					<%=radio_button_tag("has_car", "yes")%> Yes<br>
+					<%=radio_button_tag("has_car", "no")%> No
+					</div>
+				</div>
+		 		<%= submit_tag("Submit", class: "btn btn-success btn-block") %>
+			<% end %>	
+		</div>
+	</div>
+</section>
+ <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
+        async defer></script>

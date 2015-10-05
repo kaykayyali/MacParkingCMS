@@ -1,0 +1,25 @@
+<script>
+	successBox('Signed in Successfully')
+</script>
+<section id="notes" class="bg-default" >
+	<div class="container-fluid">
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><small>Welcome</small> <%= current_user.email%></h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><small>Welcome</small> <%= current_user.email%></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12">
+				<ul class="list-inline">
+					<li><a href="/notes"><h3>Notes</h3></a></li>
+					<% if current_user.role == "admin" %>
+						<li><a href="/applications"><h3>Applications</h3></a></li>
+					<% end %>
+				</ul>
+			</div>
+
+		</div>
+	</div>
+</section>

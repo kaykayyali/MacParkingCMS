@@ -13,9 +13,22 @@ class SiteController < ApplicationController
 		ContactMessage.create(name: params[:name], email: params[:email], phone: params[:phone],content: params[:content])
 		render status: 200, json: {response: "Worked"}
 	end
+	def employment
+		render("new_app")
+	end
+
+	def newapp
+		new_app = Application.create(app_params)
+		render 'index'
+	end
+
+
 	def check_for_user
 		if current_user.present?
-			redirect_to("/notes")
+			redirect_to("/#{current_user.id}/home")
 		end
+	end
+	def app_params
+		params.permit(:first_name, :last_name, :phone, :address, :has_car, :email)
 	end
 end
