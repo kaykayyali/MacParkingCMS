@@ -29,6 +29,6 @@ class SiteController < ApplicationController
 		end
 	end
 	def app_params
-		params.permit(:first_name, :last_name, :phone, :address, :has_car, :email)
+		params.permit(:first_name, :last_name, :phone, :street_address, :has_car, :email)
 	end
 end

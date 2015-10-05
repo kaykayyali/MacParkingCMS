@@ -13,7 +13,8 @@ Rails.application.routes.draw do
 get '/employment' => 'site#employment'
 post '/employment' => 'site#newapp'
 
-
+#Applications
+get '/applications/:app_id' => "applications#show"
 #notes
 get '/notes' => 'notes#index'
 post '/notes' => 'notes#create'
@@ -22,6 +23,7 @@ get '/notes/:id' => 'notes#show'
 
 #Home
 get '/:user_id/home' => 'home#index'
+get '/:user_id/applications' => "applications#index"
 #testing
 get '/invoices/:id' => 'invoices#show'
 

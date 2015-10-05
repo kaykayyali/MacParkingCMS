@@ -1,0 +1,44 @@
+<section id="notes" class="bg-default" >
+	<div class="container-fluid">
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2>Employee Applications</h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4>Employee Applications</h4>
+		</div>
+		<hr>
+		<div class="col-xs-8 center-block">
+			<div class="row">
+				<div class="col-xs-12">
+					<h3>Unread</h3>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<div class="col-xs-12">
+						<h5>Name</h5>
+					</div>
+					<ul class="list-unstyled" id="notesList">
+						<% @color = 1 %>
+						<% @applications.each do |app| %>
+							<% if @color == 1 %>
+								<li class="note clearfix">
+							<% @color = 2 %>
+							<% else %>
+								<li class="noteAlt clearfix">
+								<% @color = 1 %>
+							<% end %>
+									<a href="/applications/<%= app.id %> ">
+										<span class="lead">
+											<div class="col-xs-12">
+												<%= app.first_name %> <%= app.last_name %>
+											</div>
+										</span>
+									</a>
+								</li>
+						<% end %>
+					</ul>
+				</div>
+		</div>
+	</div>
+</section>
