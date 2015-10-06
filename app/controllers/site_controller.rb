@@ -21,11 +21,9 @@ class SiteController < ApplicationController
 		new_app = Application.create(app_params)
 		render 'index'
 	end
-
-
 	def check_for_user
 		if current_user.present?
-			redirect_to("/#{current_user.id}/home")
+			redirect_to("/#{current_user.id}/home/true")
 		end
 	end
 	def app_params

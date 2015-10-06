@@ -22,6 +22,7 @@ get '/notes/new' => 'notes#new'
 get '/notes/:id' => 'notes#show'
 
 #Home
+get '/:user_id/home/:newLogin' => 'home#index'
 get '/:user_id/home' => 'home#index'
 get '/:user_id/applications' => "applications#index"
 #testing

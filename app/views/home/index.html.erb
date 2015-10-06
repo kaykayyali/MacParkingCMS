@@ -1,8 +1,5 @@
-<script>
-	successBox('Signed in Successfully')
-</script>
 <section id="notes" class="bg-default" >
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
 			<h2><small>Welcome</small> <%= current_user.email%></h2>
 		</div>
@@ -11,11 +8,19 @@
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-xs-12">
-				<ul class="list-inline">
+			<div class="col-xs-12 ">
+				<ul class="list-inline visible-sm visible-md visible-lg visible-xl">
 					<li><a href="/notes"><h3>Notes</h3></a></li>
 					<% if current_user.role == "admin" %>
 						<li><a href="/<%=current_user.id%>/applications"><h3>Applications</h3></a></li>
+					<% end %>
+				</ul>
+			</div>
+			<div class="col-xs-12 visible-xs">
+				<ul class="list-inline">
+					<li><a href="/notes"><h5>Notes</h5></a></li>
+					<% if current_user.role == "admin" %>
+						<li><a href="/<%=current_user.id%>/applications"><h5>Applications</h5></a></li>
 					<% end %>
 				</ul>
 			</div>
@@ -23,3 +28,8 @@
 		</div>
 	</div>
 </section>
+<% if @freshLogin %>
+	<script>
+		successBox('Signed in Successfully')
+	</script>
+<% end %>

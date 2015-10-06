@@ -1,5 +1,5 @@
 <section id="notes" class="bg-default" >
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
 			<h2><small>Viewing</small> <%= @application.first_name%> <%= @application.last_name%></h2>
 		</div>
@@ -10,15 +10,24 @@
 		<div class="row">
 			<div class="col-xs-12">
 			<label>Name</label>
-			<h2><%= @application.first_name%> <%= @application.last_name%></h2>
+			<h2><%= @application.first_name.capitalize%> <%= @application.last_name.capitalize%></h2>
+			<br>
 			<label>Phone</label>
 			<h2><%= @application.phone%></h2>
+			<br>
 			<label>Email</label>
 			<h2><%= @application.email%></h2>
+			<br>
+			<% if @application.street_address != nil %>
 			<label>Address</label>
 			<h2><%= @application.street_address%></h2>
+			<br>
+			<% end %>
+			<% if @application.has_car != nil %>
 			<label>Has a car</label>
 			<h2><%= @application.has_car%></h2>
+			<br>
+			<% end %>
 			</div>
 		</div>
 	</div>
