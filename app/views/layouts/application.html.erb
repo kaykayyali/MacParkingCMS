@@ -35,36 +35,37 @@ function successBox(input) {
 	<% if current_user.present? %>
 	<div class="dropdown visible-sm visible-md visible-lg visible-xl">
 	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
-	    Options
-	    <span class="caret"></span>
+	    <span class="fa fa-bars"></span>
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	  	<li class="dropdown-header">User</li>
-	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
-	    <li><a href="#">Profile</a></li>
+
 	    <li class="dropdown-header">Site</li>
 	    <li><a href="/<%= current_user.id %>/home">Home</a></li>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
 	    <% end %>
+	  	<li class="dropdown-header">User</li>
+	    <li><a href="#">Profile</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
 	  </ul>
 	</div>
 	<div class="dropdown visible-xs">
 	  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
-	    Options
-	    <span class="caret"></span>
+	    <span class="fa fa-bars"></span>
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	  	<li class="dropdown-header">User</li>
-	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
-	    <li><a href="#">Profile</a></li>
-	    <li class="dropdown-header">Site</li>
+	  	<li class="dropdown-header">Site</li>
 	    <li><a href="/<%= current_user.id %>/home">Home</a></li>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
 	    <% end %>
+	    <li class="dropdown-header">User</li>
+	    <li><a href="#">Profile</a></li>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
 	  </ul>
 	</div>
 	<% end%> 
