@@ -44,6 +44,7 @@ function successBox(input) {
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="/nova">Nova</a></li>
 	    <% end %>
 	  	<li class="dropdown-header">User</li>
 	    <li><a href="#">Profile</a></li>
@@ -61,6 +62,7 @@ function successBox(input) {
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="/nova">Nova</a></li>
 	    <% end %>
 	    <li class="dropdown-header">User</li>
 	    <li><a href="#">Profile</a></li>

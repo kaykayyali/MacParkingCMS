@@ -25,6 +25,18 @@ get '/notes/:id' => 'notes#show'
 get '/:user_id/home/:newLogin' => 'home#index'
 get '/:user_id/home' => 'home#index'
 get '/:user_id/applications' => "applications#index"
+
+
+
+
+#Nova
+get '/nova' => "nova#index", as: 'nova_home'
+  #Nova Bulletin
+  get '/nb/new' => 'novabulletins#new', as: "new_nova_bulletin"
+  post '/nb/new' => 'novabulletins#create'
+  get '/nb/edit/:user_id/:bulletin_id' => 'novabulletins#edit'
+  post '/nb/edit/:user_id/:bulletin_id' => 'novabulletins#update'
+  get '/nb/del/:user_id/:bulletin_id' => 'novabulletins#delete'
 #testing
 get '/invoices/:id' => 'invoices#show'
 

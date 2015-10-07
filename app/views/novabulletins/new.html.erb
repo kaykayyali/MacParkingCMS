@@ -1,0 +1,24 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><small>New</small> Nova Bulletin</h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><small>New</small> Nova Bulletin</h4>
+		</div>
+		<hr>
+		<div class="row">
+			<%= form_tag("/nb/new", method: "post") do %>
+				<div class="col-xs-12 form-group">
+					<%= label(nil, "Title") %>
+					<%= text_field_tag(:title, "New Bulletin",  class: "form-control") %> 
+				</div>
+				<div class="col-xs-12 form-group">
+					<%= label(nil, "Content") %>
+					<%= text_area_tag(:content, "Body...", class: "form-control") %> 
+				</div>
+		 		<%= submit_tag("Post new Bulletin", class: "btn btn-success btn-block") %>
+			<% end %>	
+		</div>
+	</div>
+</section>
