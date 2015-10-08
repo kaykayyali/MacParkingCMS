@@ -21,13 +21,22 @@ class NovabulletinsController < ApplicationController
 		end
 	end
 	def delete
-		
+		bulletin = NovaBulletin.find_by_id(params[:bulletin_id])
+		if User.find_by_id(params[:user_id]).role = "admin"
+			bulletin.delete
+		end
+		redirect_to(:back)
 	end
 	def edit
+		@bulletin = NovaBulletin.find_by_id(params[:bulletin_id])
 		render('edit')
 	end
 	def update
-		
+		bulletin = NovaBulletin.find_by_id(params[:bulletin_id])
+		if User.find_by_id(params[:user_id]).role = "admin"
+			bulletin.update(novabulletin_params)
+		end
+		redirect_to('/nova')
 	end
 	def novabulletin_params
 		params.permit(:title, :content)
