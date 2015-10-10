@@ -1,6 +1,7 @@
 class NovabulletinsController < ApplicationController
 	before_action(:authenticate_user!)
 	def index
+		@bulletins = NovaBulletin.all
 		render('index')
 	end
 	def show

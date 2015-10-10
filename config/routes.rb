@@ -33,6 +33,7 @@ get '/:user_id/applications' => "applications#index"
 get '/nova' => "nova#index", as: 'nova_home'
   #Nova Bulletin
   get '/nb/new' => 'novabulletins#new', as: "new_nova_bulletin"
+  get '/nb' => 'novabulletins#index', as: "nova_bulletin"
   post '/nb/new' => 'novabulletins#create'
   get '/nb/edit/:user_id/:bulletin_id' => 'novabulletins#edit'
   post '/nb/update/:user_id/:bulletin_id' => 'novabulletins#update'
