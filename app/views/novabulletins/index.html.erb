@@ -8,9 +8,36 @@
 		</div>
 		<hr>
 		<div class="row">
-			<% @bulletins.each do |bulletin| %>
-				LOL
-			<% end %>
-		</div>
+				<div class="text-center">
+					<div class="col-xs-6">
+						<h5>Date Created</h5>
+					</div>
+					<div class="col-xs-6">
+						<h5>Title</h5>
+					</div>
+					<ul class="list-unstyled" id="notesList">
+						<% @color = 1 %>
+						<% @bulletins.each do |bulletin| %>
+							<% if @color == 1 %>
+								<li class="note clearfix">
+							<% @color = 2 %>
+							<% else %>
+								<li class="noteAlt clearfix">
+								<% @color = 1 %>
+							<% end %>
+									<a href="/nb/edit/<%= current_user.id %>/<%= bulletin.id %>">
+										<span class="lead">
+											<div class="col-xs-6">
+												<%= bulletin.created_at %>
+											</div>
+											<div class="col-xs-6">
+												<%= bulletin.title %>
+											</div>
+										</span>
+								</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
 	</div>
 </section>	 
