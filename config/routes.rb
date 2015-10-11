@@ -38,6 +38,9 @@ get '/nova' => "nova#index", as: 'nova_home'
   get '/nb/edit/:user_id/:bulletin_id' => 'novabulletins#edit', as: "edit_nova_bulletin"
   post '/nb/update/:user_id/:bulletin_id' => 'novabulletins#update'
   get '/nb/del/:user_id/:bulletin_id' => 'novabulletins#delete'
+  #NBComments
+  get '/nb/addnbcomment/:comment_id' => 'nbcomments#delete'
+  post '/nb/addnbcomment/:bulletin_id' => 'nbcomments#new'
 #testing
 get '/invoices/:id' => 'invoices#show'
 

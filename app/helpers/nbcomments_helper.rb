@@ -1,0 +1,2 @@
+module NbcommentsHelper
+end
