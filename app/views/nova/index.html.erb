@@ -43,9 +43,6 @@
 								<%= text_field_tag(:content, nil, class: "form-control") %> 
 						 		<%= submit_tag("Comment", class: "btn btn-success btn-block") %>
 							<% end %>	
-						<% else %>
-						<h4>No Bulletins Posted</h4>
-						<% end %>
 						<div class="commentsBox">
 							<% @bulletin.nbcomments.each do |comment| %>
 								<% if current_user.id == comment.user_id %>
@@ -65,6 +62,9 @@
 								<% end %>
 							<% end %>
 						</div>
+						<% else %>
+						<h4>No Bulletins Posted</h4>
+						<% end %>
 					</div>
 				</div>
 			</div>
