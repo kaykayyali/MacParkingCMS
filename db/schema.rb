@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151011014830) do
+ActiveRecord::Schema.define(version: 20151107191853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,34 @@ ActiveRecord::Schema.define(version: 20151011014830) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "payrollassociations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payrollentries", force: :cascade do |t|
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.date     "week_start_date"
+    t.date     "week_end_date"
+    t.date     "submission_date"
+    t.decimal  "gross_total"
+    t.decimal  "net_total"
+  end
+
+  create_table "payrollitems", force: :cascade do |t|
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "name_of_employee"
+    t.decimal  "gross_pay"
+    t.decimal  "net_pay"
+    t.decimal  "medicare_tax"
+    t.decimal  "employers_tax"
+    t.integer  "payrollentry_id"
+  end
+
+  add_index "payrollitems", ["payrollentry_id"], name: "index_payrollitems_on_payrollentry_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email",      null: false

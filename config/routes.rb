@@ -26,7 +26,9 @@ get '/:user_id/home/:newLogin' => 'home#index'
 get '/:user_id/home' => 'home#index'
 get '/:user_id/applications' => "applications#index"
 
-
+#Payrolls
+get '/admin/payrolls' => 'payrolls#index', as: 'payrolls'
+get '/admin/payrolls/new' => 'payrolls#new', as: 'payrolls_new'
 
 
 #Nova
