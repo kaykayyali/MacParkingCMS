@@ -1,3 +1,25 @@
 // Place all the styles related to the payrolls controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#payroll_items {
+	margin-top: 20px;
+}
+.payroll_item {
+	width: 100%;
+	border: lightgrey 1px solid;
+	border-right-style: none;
+	border-left-style: none;
+	font-size: 24px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.payroll_item:hover {
+	background-color: #F6F6F6;
+	border: grey 1px solid;
+	border-radius: 5px;
+	padding-bottom: 7px;
+	padding-top: 7px;
+}
+.payroll_item:hover b {
+	font-size: 28px
+}
