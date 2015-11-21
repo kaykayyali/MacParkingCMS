@@ -31,14 +31,19 @@
 									Submitted
 								</p>
 							</div>
-							<div class="col-xs-3 text-center">
+							<div class="col-xs-2 text-center">
 								<p class="lead">
 									Gross Total
 								</p>
 							</div>
-							<div class="col-xs-3 text-center">
+							<div class="col-xs-2 text-center">
 								<p class="lead">
 									Net Total
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									Options
 								</p>
 							</div>
 						</div>
@@ -55,14 +60,19 @@
 									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.submission_date %></a>
 								</p>
 							</div>
-							<div class="col-xs-3 text-center">
+							<div class="col-xs-2 text-center">
 								<p class="lead">
 									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.gross_total %></a>
 								</p>
 							</div>
-							<div class="col-xs-3 text-center">
+							<div class="col-xs-2 text-center">
 								<p class="lead">
 									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.net_total %></a>
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									<a href="<%= payrolls_show_path(payroll.id, :format => :pdf) %>">View as PDF</a>
 								</p>
 							</div>
 						</div>

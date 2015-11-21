@@ -8,62 +8,13 @@
 <section id="notes" class="bg-default" >
 	<div class="container">
 			<div class="col-xs-12">
-						<div class="row">
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									Employee
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									Gross Total
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									Medicare Tax
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									Employers Tax
-								</p>
-							</div>
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									Net Total
-								</p>
-							</div>
-						</div>
 				<% if @items %>
 					<% @items.each do |item| %>
-						<div class="row payroll_entry">
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									<%= item.name_of_employee %>
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									<%= item.gross_pay %>
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									<%= item.medicare_tax %>
-								</p>
-							</div>
-							<div class="col-xs-2 text-center">
-								<p class="lead">
-									<%= item.employers_tax %>
-								</p>
-							</div>
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									<%= item.net_pay %>
-								</p>
-							</div>
-						</div>
+						<h1><%= item.name_of_employee %>
+						<%= item.gross_pay %>
+						<%= item.medicare_tax %>
+						<%= item.employers_tax %>
+						<%= item.net_pay %></h1>
 					<% end %>
 				<% end %>
 			</div>
