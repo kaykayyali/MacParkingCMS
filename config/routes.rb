@@ -28,7 +28,9 @@ get '/:user_id/applications' => "applications#index"
 
 #Payrolls
 get '/admin/payrolls' => 'payrolls#index', as: 'payrolls'
+get '/admin/payrolls/edit/:id' => 'payrolls#edit', as: 'payrolls_edit'
 get '/admin/payrolls/new' => 'payrolls#new', as: 'payrolls_new'
+post '/admin/payrolls_new' => 'payrolls#create', as: 'payrolls_create'
 
 
 #Nova

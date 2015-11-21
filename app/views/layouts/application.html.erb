@@ -9,16 +9,45 @@
 </head>
 <body>
 <script>
-function alertBox(input) {
+function alertBox(input, options) {
 	$('#alertText').text(input)
 	$('#alertBox').slideToggle(500)
-	setTimeout(function() {$('#alertBox').slideToggle(500)}, 4000)
+	var timer = 4000,
+	redirect_address = null
+	if (options) {
+		if (options.timer){
+			timer = options.timer
+		}
+		else if (options.redirect_address){
+			redirect_address = options.redirect_address
+		}
+	}
+	setTimeout(function() {$('#alertBox').slideToggle(500)}, timer)
 }
 
-function successBox(input) {
+function successBox(input, options) {
+	var that = this
+	var timer = 3000,
+	redirect_address = null
 	$('#successText').text(input)
-	$('#successBox').slideToggle(500)
-	setTimeout(function() {$('#successBox').slideToggle(500)}, 4000)
+	$('#successBox').slideToggle()
+	if (options) {
+		if (options.timer){
+			this.timer = options.timer
+		}
+		if (options.redirect_address){
+			console.log(options.redirect_address)
+			this.redirect_address = options.redirect_address
+		}
+	}
+	setTimeout(function() {
+		$('#successBox').slideToggle()
+		if (that.redirect_address) {
+			console.log("Redirecting")
+			window.location.replace(that.redirect_address);
+		}
+	}, 
+	this.timer)
 }
 </script>
 <!-- ALERT -->

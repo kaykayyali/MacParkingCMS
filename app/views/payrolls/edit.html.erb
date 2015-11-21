@@ -1,5 +1,8 @@
 <section id="notes" class="bg-default" >
 	<div class="container">
+			<div class="col-xs-12 col-md-6 center-block">
+				<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+			</div>
 			<div class="row text-right visible-sm visible-md visible-lg visible-xl">
 				<h2><%= current_user.email%></h2>
 			</div>
@@ -8,9 +11,6 @@
 			</div>
 			<hr>
 			<div class="row">
-				<div class="col-xs-12">
-					<a href="<%= payrolls_new_path%>" class="btn btn-primary btn-block">New Payroll Entry</a>
-				</div>
 				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
 					<h3>Payrolls Viewer</h3>
 				</div>
@@ -23,17 +23,22 @@
 						<div class="row">
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									Creator
+									Employee
 								</p>
 							</div>
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									Submitted
-								</p>
-							</div>
-							<div class="col-xs-3 text-center">
+							<div class="col-xs-2 text-center">
 								<p class="lead">
 									Gross Total
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									Medicare Tax
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									Employers Tax
 								</p>
 							</div>
 							<div class="col-xs-3 text-center">
@@ -42,27 +47,32 @@
 								</p>
 							</div>
 						</div>
-				<% if @payrolls %>
-					<% @payrolls.each do |payroll| %>
+				<% if @items %>
+					<% @items.each do |item| %>
 						<div class="row payroll_entry">
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.creator.email %></a>
+									<%= item.name_of_employee %>
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									<%= item.gross_pay %>
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									<%= item.medicare_tax %>
+								</p>
+							</div>
+							<div class="col-xs-2 text-center">
+								<p class="lead">
+									<%= item.employers_tax %>
 								</p>
 							</div>
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.submission_date %></a>
-								</p>
-							</div>
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.gross_total %></a>
-								</p>
-							</div>
-							<div class="col-xs-3 text-center">
-								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.net_total %></a>
+									<%= item.net_pay %>
 								</p>
 							</div>
 						</div>

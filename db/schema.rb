@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151107191853) do
+ActiveRecord::Schema.define(version: 20151121011723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,7 +117,10 @@ ActiveRecord::Schema.define(version: 20151107191853) do
     t.date     "submission_date"
     t.decimal  "gross_total"
     t.decimal  "net_total"
+    t.integer  "user_id"
   end
+
+  add_index "payrollentries", ["user_id"], name: "index_payrollentries_on_user_id", using: :btree
 
   create_table "payrollitems", force: :cascade do |t|
     t.datetime "created_at",       null: false
