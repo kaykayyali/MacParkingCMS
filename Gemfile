@@ -27,7 +27,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 # Use Unicorn as the app server
 # gem 'unicorn'
-
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -8,10 +8,16 @@ class PayrollsController < ApplicationController
 	def new
 		render('new')
 	end
-	def edit
+	def show
 		@items = Payrollentry.find_by_id(params[:id]).payrollitems
-		p @items
-		render('edit')
+		respond_to do |format|
+	      format.html do
+	      	render('show')
+	      end
+	      format.pdf do
+	        render pdf: "Test"   # Excluding ".pdf" extension.
+	      end
+	    end
 	end
 	def create
 		new_payroll_entry = Payrollentry.new 

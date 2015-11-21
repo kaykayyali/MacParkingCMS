@@ -47,22 +47,22 @@
 						<div class="row payroll_entry">
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.creator.email %></a>
+									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.creator.email %></a>
 								</p>
 							</div>
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.submission_date %></a>
+									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.submission_date %></a>
 								</p>
 							</div>
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.gross_total %></a>
+									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.gross_total %></a>
 								</p>
 							</div>
 							<div class="col-xs-3 text-center">
 								<p class="lead">
-									<a href="<%= payrolls_edit_path(payroll.id) %>"><%= payroll.net_total %></a>
+									<a href="<%= payrolls_show_path(payroll.id) %>"><%= payroll.net_total %></a>
 								</p>
 							</div>
 						</div>
