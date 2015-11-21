@@ -5,6 +5,7 @@
 	margin-top: 20px;
 }
 .payroll_item {
+	position: relative;
 	width: 100%;
 	border: lightgrey 1px solid;
 	border-right-style: none;
@@ -22,6 +23,12 @@
 }
 .payroll_item:hover b {
 	font-size: 28px
+}
+.delete_payroll_item {
+	z-index: 6000;
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 span.gross_pay {
 	font-size: 16px;
