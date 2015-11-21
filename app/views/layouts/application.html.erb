@@ -10,24 +10,33 @@
 <body>
 <script>
 function alertBox(input, options) {
-	$('#alertText').text(input)
-	$('#alertBox').slideToggle(500)
-	var timer = 4000,
+var that = this
+	this.timer = 3000,
 	redirect_address = null
+	$('#alertText').text(input)
+	$('#alertBox').slideToggle()
 	if (options) {
 		if (options.timer){
-			timer = options.timer
+			this.timer = options.timer
 		}
-		else if (options.redirect_address){
-			redirect_address = options.redirect_address
+		if (options.redirect_address){
+			console.log(options.redirect_address)
+			this.redirect_address = options.redirect_address
 		}
 	}
-	setTimeout(function() {$('#alertBox').slideToggle(500)}, timer)
+	setTimeout(function() {
+		$('#alertBox').slideToggle()
+		if (that.redirect_address) {
+			console.log("Redirecting")
+			window.location.replace(that.redirect_address);
+		}
+	}, 
+	this.timer)
 }
 
 function successBox(input, options) {
 	var that = this
-	var timer = 3000,
+	this.timer = 3000,
 	redirect_address = null
 	$('#successText').text(input)
 	$('#successBox').slideToggle()
