@@ -1,5 +1,12 @@
 class EventsController < ApplicationController
 	def index
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
 		@events = Event.all
 		render('index')
 	end
@@ -30,6 +37,7 @@ class EventsController < ApplicationController
 		event.paid = event_info[:paid]
 		event.notes = event_info[:notes]
 		if event.save 
+			flash[:notice] = "Successfully created event"
 			redirect_to('/events')
 		end
 	end
@@ -57,6 +65,7 @@ class EventsController < ApplicationController
 		event.paid = event_info[:paid]
 		event.notes = event_info[:notes]
 		if event.save 
+			flash[:notice] = "Successfully updated event " + event.event_name
 			redirect_to('/events')
 		end
 	end

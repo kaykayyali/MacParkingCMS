@@ -2,6 +2,13 @@ class PayrollsController < ApplicationController
 	before_action(:authenticate_user!)
 	before_action(:check_Admin)
 	def index
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
 		@payrolls = Payrollentry.all.reverse
 		render('index')
 	end
@@ -50,7 +57,7 @@ class PayrollsController < ApplicationController
 			new_payroll_item.save
 		end
 		if new_payroll_entry.save
-			p "Saved new entry :)"
+			flash[:notice] = "Successfully saved Payroll"
 		end
 		respond_to do |format|
 		  format.json { render :json => {status: 200} }

@@ -1,5 +1,12 @@
 class EmployeesController < ApplicationController
 	def index
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
 		@employees = Employee.all
 		render('index')
 	end
@@ -19,6 +26,7 @@ class EmployeesController < ApplicationController
 		newEmployee.email = employee_info[:email]
 		newEmployee.phone = employee_info[:phone]
 		if newEmployee.save 
+			flash[:notice] = "Successfully created employee."
 			redirect_to('/employees')
 		end
 	end
@@ -34,6 +42,7 @@ class EmployeesController < ApplicationController
 		employee.email = employee_info[:email]
 		employee.phone = employee_info[:phone]
 		if employee.save 
+			flash[:notice] = "Successfully updated Employee " + employee.name
 			redirect_to('/employees')
 		end
 	end

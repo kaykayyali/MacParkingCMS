@@ -1,6 +1,13 @@
 class NotesController < ApplicationController
 	before_action(:authenticate_user!)
 	def index
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
 		@notes = Note.all.where('user_id = ?', current_user.id)
 		render 'index'
 	end
@@ -14,6 +21,7 @@ class NotesController < ApplicationController
 		newNote.note_location_id = note_info[:note_location]
 		newNote.user_id = current_user.id
 		if newNote.save 
+			flash[:notice] = "Successfully saved Note"
 			redirect_to('/notes')
 		end
 	end

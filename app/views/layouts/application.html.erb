@@ -59,6 +59,7 @@ function successBox(input, options) {
 	this.timer)
 }
 </script>
+
 <!-- ALERT -->
 	<div class="alert alert-danger text-center" id= "alertBox" style="display:none;">
 		<h3 id="alertText"></h3>
@@ -116,6 +117,15 @@ function successBox(input, options) {
 	  </ul>
 	</div>
 	<% end%> 
+	<% if @notice %>
+		<script>
+			successBox('<%= @notice %>');
+		</script>
+	<% elsif @alert %>
+		<script>
+			alertBox('<%= @alert %>');
+		</script>
+	<% end %>
 <%= yield %>
 
 </body>
