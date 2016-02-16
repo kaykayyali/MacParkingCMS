@@ -82,6 +82,7 @@ function successBox(input, options) {
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="<%= events_path %> ">Events</a></li>
 	    	<li><a href="/nova">Nova</a></li>
 	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
 	    	<li><a href="<%= employees_path %> ">Employees</a></li>
@@ -103,6 +104,7 @@ function successBox(input, options) {
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="<%= events_path %> ">Events</a></li>
 	    	<li><a href="/nova">Nova</a></li>
 	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
 	    	<li><a href="<%= employees_path %> ">Employees</a></li>

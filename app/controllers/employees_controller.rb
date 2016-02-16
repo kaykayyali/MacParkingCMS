@@ -39,7 +39,9 @@ class EmployeesController < ApplicationController
 	end
 
 	def delete
-		
+		employee = Employee.find(params[:id])
+		employee.delete
+		redirect_to('/employees')
 	end
 	# This Could be used to generate a small partial
 	# def mini_view

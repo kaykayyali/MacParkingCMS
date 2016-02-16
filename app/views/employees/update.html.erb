@@ -1,59 +1,39 @@
 <section id="notes" class="bg-default" >
 	<div class="container">
-			<div class="row text-right visible-sm visible-md visible-lg visible-xl">
-				<h2><small>Welcome</small> <%= current_user.email%></h2>
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><small>Welcome</small> <%= current_user.email%></h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><small>Welcome</small> <%= current_user.email%></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 			</div>
-			<div class="row text-right visible-xs">
-				<h4><small>Welcome</small> <%= current_user.email%></h4>
+			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+				<h3>Update an Employee</h3>
 			</div>
-			<hr>
-			<div class="row">
-				<div class="col-xs-12">
-					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
-				</div>
-				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
-					<h3>Update an Employee</h3>
-				</div>
-				<div class="col-xs-12 visible-xs">
-					<br>
-					<h5>Update an Employee</h5>
-				</div>
-				<%= form_tag('/employees/update/' + @employee.id.to_s, id: "employee_form") do -%>
-					<div class="form-group col-md-12">
-						<label>Name</label>
-						<%= text_field_tag 'name', @employee.name ,autofocus: true, class: "form-control" %>
-					</div>
-					<div class="form-group col-md-6">
-						<label>Email</label>
-						<%= email_field_tag 'email', @employee.email ,autofocus: false, class: "form-control" %>
-					</div>
-					<div class="form-group col-md-6">
-						<label>Phone</label>
-						<%= number_field_tag 'phone', @employee.phone , :class => "form-control" %>
-					</div>
-					<%= submit_tag 'Save', :class => "btn btn-primary btn-block" %>
-				<% end -%>
+			<div class="col-xs-12 visible-xs">
+				<br>
+				<h5>Update an Employee</h5>
 			</div>
+			<%= form_tag('/employees/update/' + @employee.id.to_s, id: "employee_form") do -%>
+				<div class="form-group col-md-12">
+					<label>Name</label>
+					<%= text_field_tag 'name', @employee.name ,autofocus: true, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Email</label>
+					<%= email_field_tag 'email', @employee.email ,autofocus: false, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Phone</label>
+					<%= number_field_tag 'phone', @employee.phone , :class => "form-control" %>
+				</div>
+				<%= submit_tag 'Save', :class => "btn btn-primary btn-block" %>
+			<% end -%>
+		</div>
 	</div>
 </section> 
-<script>
-$(document).ready(function() {
-    $('#employee_form').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            email: {
-                validators: {
-                    emailAddress: {
-                        message: 'The value is not a valid email address'
-                    }
-                }
-            }
-        }
-    });
-});
-</script>
+

@@ -1,0 +1,80 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+			<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+				<h2><small>Welcome</small> <%= current_user.email%></h2>
+			</div>
+			<div class="row text-right visible-xs">
+				<h4><small>Welcome</small> <%= current_user.email%></h4>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xs-12">
+					<a href="<%=new_event_path%>" class="btn btn-primary btn-block">New Event</a>
+				</div>
+				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+					<h3>Events</h3>
+				</div>
+				<div class="col-xs-12 visible-xs">
+					<br>
+					<h5>Events</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<div class="col-xs-3 col-md-3">
+						<h5>Name</h5>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<h5>Date</h5>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<h5>Start Time</h5>
+					</div>
+					<div class="col-xs-3 col-md-3">
+						<h5>Contact</h5>
+					</div>
+					<ul class="list-unstyled" id="notesList">
+						<% @color = 1 %>
+						<% @events.each do |event| %>
+							<% if @color == 1 %>
+								<li class="note clearfix">
+							<% @color = 2 %>
+							<% else %>
+								<li class="noteAlt clearfix">
+								<% @color = 1 %>
+							<% end %>
+									<a href="/events/show/<%= event.id %> ">
+										<span class="lead">
+											<div class="col-xs-3 col-md-3">
+												<%= event.event_name %>
+											</div>
+											<div class="col-xs-3 col-md-3">
+												<% if event.date %>
+													<%= event.date %>
+												<% else %>
+													Not Known
+												<% end %>
+											</div>
+											<div class="col-xs-3 col-md-3">
+												<% if event.start_time %>
+													<%= event.start_time.strftime("%I:%M %p") %>
+												<% else %>
+													Not Known
+												<% end %>
+											</div>
+											<div class="col-xs-3 col-md-3">
+												<% if event.contact_name != "" %>
+													<%= event.contact_name %>
+												<% else %>
+													Not Known
+												<% end %>
+											</div>
+										</span>
+									</a>
+								</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+	</div>
+</section>

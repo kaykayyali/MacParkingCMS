@@ -18,8 +18,18 @@ get '/employees' => 'employees#index', as: "employees"
 get '/employees/new' => 'employees#new', as: "new_employee"
 get '/employees/update/:id' => 'employees#update', as: "update_employee"
 get '/employees/show/:id' => 'employees#show', as: "view_employee"
+get '/employees/delete/:id' => 'employees#delete', as: "delete_employee"
 post '/employees' => 'employees#create'
 post '/employees/update/:id' => 'employees#update_model'
+
+# Events
+get '/events' => 'events#index', as: "events"
+get '/events/new' => 'events#new', as: "new_event"
+get '/events/update/:id' => 'events#update', as: "update_event"
+get '/events/show/:id' => 'events#show', as: "view_event"
+get '/events/delete/:id' => 'events#delete', as: "delete_event"
+post '/events' => 'events#create'
+post '/events/update/:id' => 'events#update_model'
 
 #Applications
 get '/applications/:app_id' => "applications#show"

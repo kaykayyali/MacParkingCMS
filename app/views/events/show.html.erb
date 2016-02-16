@@ -1,0 +1,161 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+			<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+				<h2><small>Signed in as</small> <%= current_user.email%></h2>
+			</div>
+			<div class="row text-right visible-xs">
+				<h4><small>Signed in as</small> <%= current_user.email%></h4>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xs-12">
+					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+				</div>
+				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+					<h3>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="#" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;">Staff</a></h3>
+				</div>
+				<div class="col-xs-12 visible-xs">
+					<br>
+					<h5>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-xs btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-xs btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="#" class="btn btn-xs btn-primary pull-right" style="margin-right: 5px;">Staff</a></h5>
+				</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-6 lead">
+					<label>Event Name</label>
+					<br>
+					<% if @event.event_name != "" %>
+						<%= @event.event_name %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-3 lead">
+					<label>Guest Count</label>
+					<br>
+					<% if @event.guest_count != "" %>
+						<%= @event.guest_count %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-3 lead">
+					<label>Price</label>
+					<br>
+					<% if @event.price != "" %>
+						$<%= @event.price %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>Date</label>
+					<br>
+					<% if @event.date != nil %>
+						<%= @event.date %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>Start Time</label>
+					<br>
+					<% if @event.start_time != nil %>
+						<%= @event.start_time.strftime("%I:%M %p") %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>End Time</label>
+					<br>
+					<% if @event.end_time != nil %>
+						<%= @event.end_time.strftime("%I:%M %p") %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-6 lead">
+					<label>Contact Name</label>
+					<br>
+					<% if @event.contact_name != "" %>
+						<%= @event.contact_name %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-6 lead">
+					<label>Contact Number</label>
+					<br>
+					<% if @event.contact_number != "" %>
+						<%= @event.contact_number %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-6 lead">
+					<label>Street Address</label>
+					<br>
+					<% if @event.street_address != "" %>
+						<%= @event.street_address %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>Zipcode</label>
+					<br>
+					<% if @event.zipcode != "" %>
+						<%= @event.zipcode %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>City</label>
+					<br>
+					<% if @event.city != "" %>
+						<%= @event.city %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-4 lead">
+					<label>State</label>
+					<br>
+					<% if @event.state != "" %>
+						<%= @event.state %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-12 lead">
+					<label>Notes</label>
+					<br>
+					<% if @event.notes != "" %>
+						<%= @event.notes %>
+					<% else %>
+						None
+					<% end %>
+				</div>
+				<div class="col-md-6 lead">
+					<label>Event Type</label>
+					<br>
+					<% if @event.event_type != "" %>
+						<%= @event.event_type %>
+					<% else %>
+						Not Known
+					<% end %>
+				</div>
+				<div class="col-md-6 lead">
+					<label>Paid?</label>
+					<br>
+					<% if @event.paid == true %>
+						Yes
+					<% else %>
+						no
+					<% end %>
+				</div>
+			</div>
+	</div>
+</section>

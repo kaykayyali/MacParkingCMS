@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160216002442) do
+ActiveRecord::Schema.define(version: 20160216013742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20160216002442) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
+
+  create_table "bookings", force: :cascade do |t|
+    t.integer  "employee_id"
+    t.integer  "event_id"
+    t.string   "type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "bookings", ["employee_id"], name: "index_bookings_on_employee_id", using: :btree
+  add_index "bookings", ["event_id"], name: "index_bookings_on_event_id", using: :btree
 
   create_table "contact_messages", force: :cascade do |t|
     t.string   "name"
@@ -44,6 +55,27 @@ ActiveRecord::Schema.define(version: 20160216002442) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text     "phone"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "event_name"
+    t.integer  "guest_count"
+    t.string   "sales_person",   default: "Eddie Kayyali"
+    t.string   "event_type",     default: "General"
+    t.string   "contact_name"
+    t.string   "contact_number"
+    t.string   "street_address"
+    t.string   "zipcode"
+    t.string   "city"
+    t.string   "state",          default: "Florida"
+    t.decimal  "price"
+    t.boolean  "paid",           default: false
+    t.text     "notes"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.time     "start_time"
+    t.time     "end_time"
+    t.date     "date"
   end
 
   create_table "invoices", force: :cascade do |t|

@@ -12,24 +12,26 @@
 					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 				</div>
 				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
-					<h3>View Employee<a href="<%= update_employee_path(@employee.id) %>" class="btn btn-sm btn-success pull-right">Edit</a></h3>
+					<h3>View Employee <a href="<%= delete_employee_path(@employee.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_employee_path(@employee.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a></h3>
 				</div>
 				<div class="col-xs-12 visible-xs">
 					<br>
-					<h5>View Employee<a href="<%= update_employee_path(@employee.id) %>" class="btn btn-xs btn-success pull-right">Edit</a></h5>
+					<h5>View Employee <a href="<%= delete_employee_path(@employee.id) %>" class="btn btn-xs btn-danger pull-right">Delete</a><a href="<%= update_employee_path(@employee.id) %>" class="btn btn-xs btn-success pull-right" style="margin-right: 5px;">Edit</a></h5>
 				</div>
 			</div>
 			<div class="row">
 				<h1><%= @employee.name %></h1>
+				<br>
 				<% if @employee.phone != "" %>				
-					<h3><%= @employee.phone %></h3>
+					<h4><%= @employee.phone %></h4>
 				<% else %>
-					<h3>Sorry, there is no known phone number for this employee. <a href="<%= update_employee_path(@employee.id) %>">Click here to add one</a></h3>
+					<h4>Sorry, there is no known phone number for this employee. <a href="<%= update_employee_path(@employee.id) %>">Click here to add one</a></h4>
 				<% end %>
+				<br>
 				<% if @employee.email != "" %>
-					<h3><%= @employee.email %></h3>
+					<h4><%= @employee.email %></h4>
 				<% else %>
-					<h3>Sorry, there is no known email for this employee. <a href="<%= update_employee_path(@employee.id) %>">Click here to add one</a></h3>
+					<h4>Sorry, there is no known email for this employee. <a href="<%= update_employee_path(@employee.id) %>">Click here to add one</a></h4>
 				<% end %>
 			</div>
 	</div>

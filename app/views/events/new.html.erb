@@ -1,0 +1,87 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><small>Welcome</small> <%= current_user.email%></h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><small>Welcome</small> <%= current_user.email%></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+			</div>
+			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+				<h3>Add an Event</h3>
+			</div>
+			<div class="col-xs-12 visible-xs">
+				<br>
+				<h5>Add an Event</h5>
+			</div>
+			<%= form_tag('/events') do -%>
+				<div class="form-group col-md-6">
+					<label>Event Name</label>
+					<%= text_field_tag 'event_name',nil,autofocus: true, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-3">
+					<label>Guest Count</label>
+					<%= number_field_tag 'guest_count',30,autofocus: false, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-3">
+					<label>Price</label>
+					<%= number_field_tag 'price',0,autofocus: false, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-4">
+					<label>Date</label>
+					<%= date_field_tag 'date', Date.today, :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-4">
+					<label>Start Time</label>
+ 					<input type="time" name ='start_time' class="form-control" value="<%= Time.now.strftime("%H:%M") %>">	
+ 				</div>
+				<div class="form-group col-md-4">
+					<label>End Time</label>
+					<input type="time" name ='end_time' class="form-control" value="<%= Time.now.strftime("%H:%M") %>">
+				</div>
+				<div class="form-group col-md-6">
+					<label>Contact Name</label>
+					<%= text_field_tag 'contact_name',nil,autofocus: false, class: "form-control" %>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Contact Number</label>
+					<%= number_field_tag 'contact_number', nil, :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-12">
+					<label>Street Address</label>
+					<%= text_field_tag 'street_address', nil, :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Zipcode</label>
+					<%= number_field_tag 'zipcode', nil, :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-3">
+					<label>City</label>
+					<%= text_field_tag 'city', "Miami", :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-3">
+					<label>State</label>
+					<%= text_field_tag 'state', "Florida", :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-12">
+					<label>Notes</label>
+					<%= text_area_tag 'notes', nil, :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-6">
+					<label>Event Type</label>
+					<%= select_tag 'event_type', options_for_select([["General", "General"],["Wedding", "Wedding"], ["Private", "Private"], ["Close Quarters", "Close Quarters"]]), :class => "form-control" %>
+				</div>
+				<div class="form-group col-md-2">
+					<label>Paid?</label>
+					<br>
+					<input type="checkbox" name ="paid" id="paid">
+ 				</div>
+				<%= submit_tag 'Save', :class => "btn btn-primary btn-block" %>
+			<% end -%>
+		</div>
+	</div>
+</section> 
