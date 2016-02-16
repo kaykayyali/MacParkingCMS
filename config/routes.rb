@@ -13,6 +13,14 @@ Rails.application.routes.draw do
 get '/employment' => 'site#employment'
 post '/employment' => 'site#newapp'
 
+# Employees
+get '/employees' => 'employees#index', as: "employees"
+get '/employees/new' => 'employees#new', as: "new_employee"
+get '/employees/update/:id' => 'employees#update', as: "update_employee"
+get '/employees/show/:id' => 'employees#show', as: "view_employee"
+post '/employees' => 'employees#create'
+post '/employees/update/:id' => 'employees#update_model'
+
 #Applications
 get '/applications/:app_id' => "applications#show"
 #notes

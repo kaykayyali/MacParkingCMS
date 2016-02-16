@@ -1,13 +1,20 @@
 <head>
     <meta charset='utf-8' />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
 </head>
 <style type="text/css">
-
+	section#notes {
+		background-image: "<%= image_tag image_url('checks.jpg')%>";
+		background-position: center;
+	}
+	img {
+		
+	}
 </style>
+
 <section id="notes" class="bg-default" >
 	<div class="container">
 			<div class="col-xs-12">
+			<%= wicked_pdf_image_tag('checks.jpg')%>
 				<% if @items %>
 					<% @items.each do |item| %>
 						<h1><%= item.name_of_employee %>

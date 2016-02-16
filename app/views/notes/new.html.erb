@@ -4,6 +4,9 @@
 			<h2><%= current_user.email%></h2>
 		</div>
 		<div class="row">
+				<div class="col-xs-12">
+					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+				</div>
 				<%= form_tag('/notes') do -%>
 					<div class="form-group col-md-6">
 						<label>Subject</label>
@@ -29,4 +32,4 @@
 				<% end -%>
 		</div>
 	</div>
-</section>
+</section> 

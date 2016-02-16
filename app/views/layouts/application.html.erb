@@ -84,6 +84,7 @@ function successBox(input, options) {
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
 	    	<li><a href="/nova">Nova</a></li>
 	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
+	    	<li><a href="<%= employees_path %> ">Employees</a></li>
 	    <% end %>
 	  	<li class="dropdown-header">User</li>
 	    <li><a href="#">Profile</a></li>
@@ -91,6 +92,7 @@ function successBox(input, options) {
 	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
 	  </ul>
 	</div>
+	<!-- Mobile Version -->
 	<div class="dropdown visible-xs">
 	  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
 	    <span class="fa fa-bars"></span>
@@ -103,6 +105,7 @@ function successBox(input, options) {
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
 	    	<li><a href="/nova">Nova</a></li>
 	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
+	    	<li><a href="<%= employees_path %> ">Employees</a></li>
 	    <% end %>
 	    <li class="dropdown-header">User</li>
 	    <li><a href="#">Profile</a></li>

@@ -15,7 +15,12 @@ class PayrollsController < ApplicationController
 	      	render('show')
 	      end
 	      format.pdf do
-	        render pdf: "Test"   # Excluding ".pdf" extension.
+	        render pdf: "Test",
+	          margin:  {   top:               0,                     # default 10 (mm)
+                            bottom:            0,
+                            left:              0,
+                            right:             0 }
+
 	      end
 	    end
 	end

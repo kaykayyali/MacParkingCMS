@@ -1,0 +1,70 @@
+<section id="notes" class="bg-default" >
+	<div class="container">
+			<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+				<h2><small>Welcome</small> <%= current_user.email%></h2>
+			</div>
+			<div class="row text-right visible-xs">
+				<h4><small>Welcome</small> <%= current_user.email%></h4>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-xs-12">
+					<a href="<%=new_employee_path%>" class="btn btn-primary btn-block">New Employee</a>
+				</div>
+				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+					<h3>Employees</h3>
+				</div>
+				<div class="col-xs-12 visible-xs">
+					<br>
+					<h5>Employees</h5>
+				</div>
+			</div>
+			<div class="row">
+				<div class="text-center">
+					<div class="col-xs-3 col-md-4">
+						<h5>Name</h5>
+					</div>
+					<div class="col-xs-4 col-md-4">
+						<h5>Phone</h5>
+					</div>
+					<div class="col-xs-5 col-md-4">
+						<h5>Email</h5>
+					</div>
+					<ul class="list-unstyled" id="notesList">
+						<% @color = 1 %>
+						<% @employees.each do |employee| %>
+							<% if @color == 1 %>
+								<li class="note clearfix">
+							<% @color = 2 %>
+							<% else %>
+								<li class="noteAlt clearfix">
+								<% @color = 1 %>
+							<% end %>
+									<a href="/employees/show/<%= employee.id %> ">
+										<span class="lead">
+											<div class="col-xs-3 col-md-4">
+												<%= employee.name %>
+											</div>
+											<div class="col-xs-4 col-md-4">
+												<% if employee.phone != "" %>
+													<%= employee.phone %>
+												<% else %>
+													Not Known
+												<% end %>
+											</div>
+											<div class="col-xs-5 col-md-4">
+												<% if employee.email != "" %>
+													<%= employee.email %>
+												<% else %>
+													Not Known
+												<% end %>
+											</div>
+										</span>
+									<a href="#">
+								</li>
+						<% end %>
+					</ul>
+				</div>
+			</div>
+	</div>
+</section>
