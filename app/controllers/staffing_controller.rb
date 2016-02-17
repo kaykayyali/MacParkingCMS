@@ -33,7 +33,7 @@ class StaffingController < ApplicationController
 		p flash.notice
 		@event = Event.find(params[:event_id])
 		@employees = Employee.all
-		@bookings = Booking.all.where(:event_id == @event.id)
+		@bookings = Booking.where(event_id: @event.id)
 		doormen = @bookings.select do |elem|
 			elem.booking_type ==  "doorman"
 		end
