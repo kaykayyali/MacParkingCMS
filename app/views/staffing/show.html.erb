@@ -1,1 +1,112 @@
-<h1>NOT FINISHED</h1>
+<section id="notes" class="bg-default" >
+	<div class="container">
+		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
+			<h2><%= current_user.email%></h2>
+		</div>
+		<div class="row text-right visible-xs">
+			<h4><%= current_user.email%></h4>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+			<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
+				<h3>
+					Staffing for <a href="<%= view_event_path(@event.id)%>" class='blue_no_hover'> <%= @event.event_name%></a> <small>on <%= @event.date%> </small>
+					<ul class="list-inline pull-right">
+						<li><button class="btn btn-md btn-success add_person add_runner" id="Doorman">Add Doorman</button></li>
+						<li><button class="btn btn-md btn-warning add_person add_runner" id="Runner">Add Runner</button></li>
+						<li><button class="btn btn-md btn-info add_person add_runner" id="Lotman">Add Lotman</button></li>
+						<li><button class="btn btn-md btn-danger add_person add_shuttle" id="Shuttle">Add Shuttle</button></li>
+					</ul>
+				</h3>
+			</div>
+			<div class="col-xs-12 visible-xs">
+				<br>
+				<h4>Staffing for <%= @event.event_name%> 
+					<br>
+					<small>on <%= @event.date%></small>
+				</h4> 
+				<ul class="list-inline text-center">
+					<li><button class="btn btn-xs btn-success add_person add_doorman" id="Doorman">Doorman</button></li>
+					<li><button class="btn btn-xs btn-warning add_person add_runner" id="Runner">Runner</button></li>
+					<li><button class="btn btn-xs btn-info add_person add_lotman" id="Lotman">Lotman</button></li>
+					<li><button class="btn btn-xs btn-danger add_person add_shuttle" id="Shuttle">Shuttle</button></li>
+				</ul>
+			</div>
+		</div>
+		<% @types.each do |type|%>
+			<div class="col-xs-12 col-lg-3">
+				<h3 class="text-center"><%= type.capitalize %></h3>
+				<ul class="list-unstyled text-center">
+					<% if @data_hash[type.to_sym]%>
+						<% @data_hash[type.to_sym].each do |booking| %>
+							<% employee = Employee.find(booking.employee_id) %>
+							<li><a href="<%= view_employee_path(employee.id)%>"> <%= employee.name %></a></li>
+						<% end %>
+					<% end %>
+				</ul>
+			</div> 
+		<% end %>
+	</div>
+</section>
+
+
+<div class="modal fade" id="booking_modal" tabindex="-1" role="dialog" aria-labelledby="newbookingmodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="booking_modal_label">Add <span id="add_person_type"></span></h4>
+      </div>
+      <div class="modal-body">
+      	<ul class="list-unstyled" id="employee_list">
+      		<% @employees.each do |employee| %>
+      			<li class="add_person_list_item" id="<%=employee.id%>">
+      				<h4>
+	      				<%= employee.name %> 
+	      				<% if employee.phone %>
+	      					<small>
+	      						<%= employee.phone %>
+	      					</small>
+	      				<% end %>
+	      			</h4>
+      			</li>
+      		<% end %>
+      	</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+var event_id = <%= @event.id %>
+	$('document').ready(function() {
+		$('button.add_person').on('click', function(event) {
+			$('.add_person_list_item').off()
+			$('#booking_modal').modal();
+			$('#add_person_type').text(event.target.id);
+			$('.add_person_list_item').on('click', function(event) {
+				console.log(event)
+				$.ajax({
+				  type: "POST",
+				  url: "/staffing/" + event_id + "/" + event.delegateTarget.id + "/" + $('#add_person_type').text().toLowerCase(),
+				  data: {
+				  	employee_id : event.delegateTarget.id,
+				  	type 		: $('#add_person_type').text().toLowerCase()
+				  },
+				  success: handleSuccess(),
+				  dataType: "JSON"
+				});
+			})
+			var handleSuccess = function() {
+				setTimeout(function(){location.reload();}, 250);
+			}
+		})
+	})
+</script>
+
+

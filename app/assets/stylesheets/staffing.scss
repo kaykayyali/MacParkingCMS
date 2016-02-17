@@ -1,3 +1,14 @@
 // Place all the styles related to the staffing controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.add_person_list_item {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.add_person_list_item:hover {
+	background-color: lightgrey;
+	border: 1px solid grey;
+	border-radius: 10px;
+	cursor: pointer;
+}

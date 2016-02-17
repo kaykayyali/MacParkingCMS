@@ -24,3 +24,11 @@
 @keyframes come-in {
   to { transform: translateY(0); }
 }
+
+.blue_no_hover {
+	color:#428bca;
+}
+.blue_no_hover:hover {
+	text-decoration: none;
+	color: lightgrey;
+}
