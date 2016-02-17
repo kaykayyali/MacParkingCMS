@@ -63,6 +63,7 @@ class PayrollsController < ApplicationController
 		  format.json { render :json => {status: 200} }
 		end
 	end
+
 	def check_Admin
 		if current_user.role != "admin"
 			redirect_to('/')

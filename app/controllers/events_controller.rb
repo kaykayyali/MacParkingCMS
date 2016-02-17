@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+	before_action(:authenticate_user!)
+	before_action(:check_Admin)
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -80,6 +82,11 @@ class EventsController < ApplicationController
 	# 	render('mini_view')
 	# end
 
+	def check_Admin
+		if current_user.role != "admin"
+			redirect_to('/')
+		end
+	end
 	private
 	def event_params
 		params.permit(:event_name,:event_type, :date, :start_time, :end_time, :guest_count, :contact_name, :contact_number, :street_address, :zipcode, :city, :state, :price, :paid, :notes)

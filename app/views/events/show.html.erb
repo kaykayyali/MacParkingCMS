@@ -12,11 +12,11 @@
 					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 				</div>
 				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
-					<h3>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="#" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;">Staff</a></h3>
+					<h3>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="<%= staffing_show_path(@event.id)%>" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;">Staff</a></h3>
 				</div>
 				<div class="col-xs-12 visible-xs">
 					<br>
-					<h5>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-xs btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-xs btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="#" class="btn btn-xs btn-primary pull-right" style="margin-right: 5px;">Staff</a></h5>
+					<h5>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-xs btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-xs btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="<%= staffing_show_path(@event.id)%>" class="btn btn-xs btn-primary pull-right" style="margin-right: 5px;">Staff</a></h5>
 				</div>
 			</div>
 			<br>

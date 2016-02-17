@@ -39,6 +39,12 @@ post '/notes' => 'notes#create'
 get '/notes/new' => 'notes#new'
 get '/notes/:id' => 'notes#show'
 
+
+#Staffing
+get '/staffing/:event_id' => 'staffing#show', as: 'staffing_show'
+post '/staffing/:event_id' => 'staffing#create_booking', as: 'create_booking'
+delete 'staffing/:event_id/:booking_id' => 'staffing#delete_booking', as: 'delete_booking'
+
 #Home
 get '/:user_id/home/:newLogin' => 'home#index'
 get '/:user_id/home' => 'home#index'

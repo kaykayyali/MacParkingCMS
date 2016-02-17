@@ -1,4 +1,6 @@
 class EmployeesController < ApplicationController
+	before_action(:authenticate_user!)
+	before_action(:check_Admin)
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -56,6 +58,12 @@ class EmployeesController < ApplicationController
 	# def mini_view
 	# 	render('mini_view')
 	# end
+
+	def check_Admin
+		if current_user.role != "admin"
+			redirect_to('/')
+		end
+	end
 
 	private
 	def employee_params
