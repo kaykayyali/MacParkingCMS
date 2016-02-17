@@ -79,7 +79,9 @@ function successBox(input, options) {
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
 	    <li class="dropdown-header">Site</li>
-	    <li><a href="/<%= current_user.id %>/home">Home</a></li>
+	    <% if current_user.role == "admin" %>
+	    	<li><a href="/<%= current_user.id %>/home">Home</a></li>
+	    <% end %>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
@@ -101,7 +103,9 @@ function successBox(input, options) {
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 	  	<li class="dropdown-header">Site</li>
-	    <li><a href="/<%= current_user.id %>/home">Home</a></li>
+	  	<% if current_user.role == "admin" %>
+	    	<li><a href="/<%= current_user.id %>/home">Home</a></li>
+	    <% end %>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>

@@ -5,4 +5,9 @@ class InvoicesController < ApplicationController
 		@invoice = Invoice.find_by_id(params[:id])
 		render 'show'
 	end
+	def check_Admin
+		if current_user.role != "admin"
+			redirect_to('/')
+		end
+	end
 end
