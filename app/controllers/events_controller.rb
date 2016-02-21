@@ -77,6 +77,24 @@ class EventsController < ApplicationController
 		event.delete
 		redirect_to('/events')
 	end
+	def generate_feed
+		respond_to do |format|
+			events = Event.all
+			event_feed_object = []
+			events.each do |event| 
+				new_feed_item = {}
+				new_feed_item[:title] = event.event_name
+				new_feed_item[:start] = event.date
+				new_feed_item[:id] = event.id
+				p new_feed_item
+				event_feed_object.push(new_feed_item)
+				p event_feed_object
+			end
+			p "EVENT FEED"
+			p event_feed_object
+		  format.json { render :json => event_feed_object.to_json }
+		end
+	end
 	# This Could be used to generate a small partial
 	# def mini_view
 	# 	render('mini_view')

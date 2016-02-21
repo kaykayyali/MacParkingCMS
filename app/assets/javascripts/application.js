@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require fullcalendar
 //= require jquery-visibility
 //= require twitter/bootstrap
 //= require_tree .

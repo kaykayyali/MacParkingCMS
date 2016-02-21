@@ -28,6 +28,7 @@ get '/events/new' => 'events#new', as: "new_event"
 get '/events/update/:id' => 'events#update', as: "update_event"
 get '/events/show/:id' => 'events#show', as: "view_event"
 get '/events/delete/:id' => 'events#delete', as: "delete_event"
+get '/events/getfeed' => 'events#generate_feed', as: "event_feed"
 post '/events' => 'events#create'
 post '/events/update/:id' => 'events#update_model'
 
