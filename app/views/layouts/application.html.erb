@@ -94,7 +94,7 @@ function successBox(input, options) {
 	    	<li><a href="<%= employees_path %> ">Employees</a></li>
 	    <% end %>
 	  	<li class="dropdown-header">User</li>
-	    <li><a href="#">Profile</a></li>
+	    <li><a href="<%= update_employee_path(current_user.profile.employee.id) %>">Profile</a></li>
 	    <li role="separator" class="divider"></li>
 	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
 	  </ul>
@@ -118,7 +118,7 @@ function successBox(input, options) {
 	    	<li><a href="<%= employees_path %> ">Employees</a></li>
 	    <% end %>
 	    <li class="dropdown-header">User</li>
-	    <li><a href="#">Profile</a></li>
+	    <li><a href="<%= update_employee_path(current_user.profile.employee.id) %>">Profile</a></li>
 	    <li role="separator" class="divider"></li>
 	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
 	  </ul>

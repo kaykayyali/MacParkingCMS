@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217045753) do
+ActiveRecord::Schema.define(version: 20160221040612) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,16 @@ ActiveRecord::Schema.define(version: 20160217045753) do
   end
 
   add_index "payrollitems", ["payrollentry_id"], name: "index_payrollitems_on_payrollentry_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "employee_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "profiles", ["employee_id"], name: "index_profiles_on_employee_id", using: :btree
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email",      null: false

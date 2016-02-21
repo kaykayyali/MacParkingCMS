@@ -41,7 +41,7 @@
 					<% if @data_hash[type.to_sym]%>
 						<% @data_hash[type.to_sym].each do |booking| %>
 							<% employee = Employee.find(booking.employee_id) %>
-							<li><a href="<%= view_employee_path(employee.id)%>"> <%= employee.name %></a></li>
+							<li id="<%= booking.id %>"><a href="<%= view_employee_path(employee.id)%>"> <%= employee.name %></a><a data-method="delete" class="pull-right btn btn-xs btn-danger"href="<%= delete_booking_path(booking.id)%>">x</a></li>
 						<% end %>
 					<% end %>
 				</ul>

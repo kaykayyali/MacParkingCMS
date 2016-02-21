@@ -1,6 +1,9 @@
 class EmployeesController < ApplicationController
 	before_action(:authenticate_user!)
+	before_action(:check_profile)
 	before_action(:check_Admin)
+	skip_before_action :check_Admin, only: [:create, :new, :update, :make_admin]
+	 skip_before_action :check_profile, only: [:create, :new]
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -12,7 +15,23 @@ class EmployeesController < ApplicationController
 		@employees = Employee.all
 		render('index')
 	end
+	def make_admin
+		user = User.find(current_user.id)
+		user.role = "admin"
+		if user.save 
+			flash[:notice] = "Successfully made into an admin"
+			redirect_to('/')
+		end
+
+	end
 	def show
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
 		@employee = Employee.find(params[:id])
 		render('show')
 	end
@@ -28,7 +47,11 @@ class EmployeesController < ApplicationController
 		newEmployee.email = employee_info[:email]
 		newEmployee.phone = employee_info[:phone]
 		if newEmployee.save 
-			flash[:notice] = "Successfully created employee."
+			newProfile = Profile.new
+			newProfile.user = current_user
+			newProfile.employee = newEmployee
+			newProfile.save
+			flash[:notice] = "Successfully created you profile."
 			redirect_to('/employees')
 		end
 	end
@@ -62,6 +85,12 @@ class EmployeesController < ApplicationController
 	def check_Admin
 		if current_user.role != "admin"
 			redirect_to('/')
+		end
+	end
+	def check_profile 
+		if !current_user.profile 
+			flash[:alert] = "You must create a profile to see this"
+			redirect_to(new_employee_path)
 		end
 	end
 

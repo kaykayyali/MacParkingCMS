@@ -1,22 +1,25 @@
 <section id="notes" class="bg-default" >
 	<div class="container">
 		<div class="row text-right visible-sm visible-md visible-lg visible-xl">
-			<h2><small>Welcome</small> <%= current_user.email%></h2>
+			<h2><small>Signed in as</small> <%= current_user.email%></h2>
 		</div>
 		<div class="row text-right visible-xs">
-			<h4><small>Welcome</small> <%= current_user.email%></h4>
+			<h4><small>Signed in as</small> <%= current_user.email%></h4>
 		</div>
 		<hr>
 		<div class="row">
-			<div class="col-xs-12">
+<!-- 			<div class="col-xs-12">
 				<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 			</div>
-			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
-				<h3>Add an Employee</h3>
+ -->			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+				<h3>Welcome to Mac Parking Online!</h3>
 			</div>
 			<div class="col-xs-12 visible-xs">
 				<br>
-				<h5>Add an Employee</h5>
+				<h5>Welcome to Mac Parking Online!</h5>
+			</div>
+			<div class="col-xs-12">
+				<h5>Create your profile</h5>
 			</div>
 			<%= form_tag('/employees') do -%>
 				<div class="form-group col-md-12">

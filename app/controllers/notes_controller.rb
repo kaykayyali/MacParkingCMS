@@ -1,5 +1,6 @@
 class NotesController < ApplicationController
 	before_action(:authenticate_user!)
+	before_action(:check_profile)
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -35,5 +36,11 @@ class NotesController < ApplicationController
 	end
 	def note_params
 		params.permit(:content, :date, :subject, :note_type, :note_location)
+	end
+	def check_profile 
+		if !current_user.profile 
+			flash[:alert] = "You must create a profile to see this"
+			redirect_to(new_employee_path)
+		end
 	end
 end

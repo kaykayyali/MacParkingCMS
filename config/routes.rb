@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 #Employment
 get '/employment' => 'site#employment'
 post '/employment' => 'site#newapp'
+# Admins
 
+get '/create_admin/macparking2015' => 'employees#make_admin'
 # Employees
 get '/employees' => 'employees#index', as: "employees"
 get '/employees/new' => 'employees#new', as: "new_employee"
@@ -44,7 +46,7 @@ get '/notes/:id' => 'notes#show'
 #Staffing
 get '/staffing/:event_id' => 'staffing#show', as: 'staffing_show'
 post '/staffing/:event_id/:employee_id/:type' => 'staffing#create_booking', as: 'create_booking'
-delete 'staffing/:event_id/:booking_id' => 'staffing#delete_booking', as: 'delete_booking'
+delete '/staffing/:booking_id' => 'staffing#delete_booking', as: 'delete_booking'
 
 #Home
 get '/:user_id/home/:newLogin' => 'home#index'

@@ -20,6 +20,10 @@ class StaffingController < ApplicationController
 		  format.json { render json: {:status => 200} }
 		end	
 	end
+	def delete_booking
+		Booking.find(params[:booking_id]).delete
+		redirect_to(:back)
+	end
 
 	def show
 		if flash.notice
@@ -54,6 +58,12 @@ class StaffingController < ApplicationController
 			:shuttles => shuttles,
 		}
 		render('show')
+	end
+	def check_profile 
+		flash[:notice] = "You must create a profile to see this"
+		if !current_user.profile 
+			redirect_to(new_employee_path)
+		end
 	end
 	def check_Admin
 		if current_user.role != "admin"

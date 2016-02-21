@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
 	before_action(:authenticate_user!)
+	before_action(:check_profile)
 	before_action(:check_Admin)
 	def index
 		if flash.notice
@@ -103,6 +104,12 @@ class EventsController < ApplicationController
 	def check_Admin
 		if current_user.role != "admin"
 			redirect_to('/')
+		end
+	end
+		def check_profile 
+		if !current_user.profile 
+			flash[:alert] = "You must create a profile to see this"
+			redirect_to(new_employee_path)
 		end
 	end
 	private
