@@ -10,11 +10,9 @@
 		<div class="row">
 			<h2>Dashboard <small> Overview</small></h2>
 			<div class="col-xs-12 calendar_wrapper">
-				<% if current_user.role == "admin" %>
 					<div id="calendar_view">
 						
 					</div>
-				<% end %>
 			</div>
 		</div>
 	</div>
@@ -23,13 +21,12 @@
 	$(document).ready(function() {
 		$('#calendar_view').fullCalendar({
 			dayClick: function(date, jsEvent, view) {
-		         location.assign("/events/new/" + date.format())
+		         alert("No events on this day");
 		    },
 		    eventClick: function(event) {
-		    	// console.log(event)
-		    	location.assign("/events/show/" + event.id);
+		    	location.assign("/events/show_employee/" + event.id);
 		    },
-		    events: '<%= event_feed_path %>',
+		    events: '<%= my_event_feed_path %>',
    		})
    	})
 </script>

@@ -35,13 +35,13 @@
 			</div>
 		</div>
 		<% @types.each do |type|%>
-			<div class="col-xs-12 col-lg-3">
+			<div class="col-xs-6  col-lg-3">
 				<h3 class="text-center"><%= type.capitalize %></h3>
 				<ul class="list-unstyled text-center">
 					<% if @data_hash[type.to_sym]%>
 						<% @data_hash[type.to_sym].each do |booking| %>
 							<% employee = Employee.find(booking.employee_id) %>
-							<li id="<%= booking.id %>"><a href="<%= view_employee_path(employee.id)%>"> <%= employee.name %></a><a data-method="delete" class="pull-right btn btn-xs btn-danger"href="<%= delete_booking_path(booking.id)%>">x</a></li>
+							<li class="booking_line_item" id="<%= booking.id %>"><a href="<%= view_employee_path(employee.id)%>"> <%= employee.name %></a><a data-method="delete" class="pull-right delete_booking"href="<%= delete_booking_path(booking.id)%>">x</a></li>
 						<% end %>
 					<% end %>
 				</ul>
@@ -105,6 +105,15 @@ var event_id = <%= @event.id %>
 			var handleSuccess = function() {
 				setTimeout(function(){location.reload();}, 250);
 			}
+		})
+
+		$('.delete_booking').hover(function(event) {
+			console.log("Adding deleting", event)
+			$(event.target.parentElement).addClass('deleting');
+			console.log("Adding deleting", event)
+		}, function(event){
+			$(event.target.parentElement).removeClass('deleting');
+			console.log("Adding deleting", event)
 		})
 	})
 </script>

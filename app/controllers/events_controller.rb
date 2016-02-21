@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 	before_action(:authenticate_user!)
 	before_action(:check_profile)
 	before_action(:check_Admin)
+	skip_before_action :check_Admin, only: [:generate_my_event_feed, :show_employee]
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -21,7 +22,11 @@ class EventsController < ApplicationController
 	def new
 		render('new')
 	end
-
+	def new_with_date
+		@date = params[:date]
+		p @date
+		render('new')
+	end
 	def create
 		event_info = event_params
 		event = Event.new()
@@ -95,6 +100,38 @@ class EventsController < ApplicationController
 			p event_feed_object
 		  format.json { render :json => event_feed_object.to_json }
 		end
+	end
+	def generate_my_event_feed
+		events = []
+			events_collection = Event.all
+			events_collection.each do |event| 
+				event.bookings.each do |booking|
+					p booking
+					if booking.employee == current_user.profile.employee
+						events.append(event)
+					end
+				end
+			end
+			p events
+			event_feed_object = []
+			events.each do |event| 
+				new_feed_item = {}
+				new_feed_item[:title] = event.event_name
+				new_feed_item[:start] = event.date
+				new_feed_item[:id] = event.id
+				p new_feed_item
+				event_feed_object.push(new_feed_item)
+				p event_feed_object
+			end
+			p "EVENT FEED"
+			p event_feed_object
+		respond_to do |format|
+		  format.json { render :json => event_feed_object.to_json }
+		end
+	end
+	def show_employee
+		@event = Event.find(params[:event_id])
+		render('show_employee')
 	end
 	# This Could be used to generate a small partial
 	# def mini_view

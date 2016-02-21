@@ -12,11 +12,11 @@
 					<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 				</div>
 				<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
-					<h3>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="<%= staffing_show_path(@event.id)%>" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;">Staff</a></h3>
+					<h3>View Event</h3>
 				</div>
 				<div class="col-xs-12 visible-xs">
 					<br>
-					<h5>View Event <a href="<%= delete_event_path(@event.id) %>" class="btn btn-sm btn-danger pull-right">Delete</a><a href="<%= update_event_path(@event.id) %>" class="btn btn-sm btn-success pull-right" style="margin-right: 5px;">Edit</a><a href="<%= staffing_show_path(@event.id)%>" class="btn btn-sm btn-primary pull-right" style="margin-right: 5px;">Staff</a></h5>
+					<h5>View Event</h5>
 				</div>
 			</div>
 			<br>
@@ -62,24 +62,6 @@
 					<br>
 					<% if @event.end_time != nil %>
 						<%= @event.end_time.strftime("%I:%M %p") %>
-					<% else %>
-						Not Known
-					<% end %>
-				</div>
-				<div class="col-xs-6 col-md-6 lead">
-					<label>Contact Name</label>
-					<br>
-					<% if @event.contact_name != "" %>
-						<%= @event.contact_name %>
-					<% else %>
-						Not Known
-					<% end %>
-				</div>
-				<div class="col-xs-6 col-md-6 lead">
-					<label>Contact Number</label>
-					<br>
-					<% if @event.contact_number != "" %>
-						<%= @event.contact_number %>
 					<% else %>
 						Not Known
 					<% end %>
@@ -134,24 +116,6 @@
 					<br>
 					<% if @event.event_type != "" %>
 						<%= @event.event_type %>
-					<% else %>
-						Not Known
-					<% end %>
-				</div>
-				<div class="col-xs-3 col-md-3 lead">
-					<label>Paid?</label>
-					<br>
-					<% if @event.paid == true %>
-						Yes
-					<% else %>
-						no
-					<% end %>
-				</div>
-				<div class="col-xs-5 col-md-3 lead">
-					<label>Price</label>
-					<br>
-					<% if @event.price != "" %>
-						$<%= @event.price %>
 					<% else %>
 						Not Known
 					<% end %>

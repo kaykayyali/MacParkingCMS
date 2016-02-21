@@ -26,11 +26,14 @@ post '/employees/update/:id' => 'employees#update_model'
 
 # Events
 get '/events' => 'events#index', as: "events"
+get '/events/show_employee/:event_id' => 'events#show_employee', as: "show_employee_path"
 get '/events/new' => 'events#new', as: "new_event"
+get '/events/new/:date' => 'events#new_with_date', as: "new_event_with_date"
 get '/events/update/:id' => 'events#update', as: "update_event"
 get '/events/show/:id' => 'events#show', as: "view_event"
 get '/events/delete/:id' => 'events#delete', as: "delete_event"
 get '/events/getfeed' => 'events#generate_feed', as: "event_feed"
+get '/events/get_my_event_feed' => 'events#generate_my_event_feed', as: "my_event_feed"
 post '/events' => 'events#create'
 post '/events/update/:id' => 'events#update_model'
 
@@ -52,6 +55,7 @@ delete '/staffing/:booking_id' => 'staffing#delete_booking', as: 'delete_booking
 get '/:user_id/home/:newLogin' => 'home#index'
 get '/:user_id/home' => 'home#index'
 get '/:user_id/applications' => "applications#index"
+get '/my_schedule' => 'home#my_schedule'
 
 #Payrolls
 get '/admin/payrolls' => 'payrolls#index', as: 'payrolls'

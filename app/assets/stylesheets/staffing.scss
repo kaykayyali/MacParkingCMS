@@ -12,3 +12,28 @@
 	border-radius: 10px;
 	cursor: pointer;
 }
+
+
+.delete_booking {
+	color: red;
+	-webkit-transition: width 2s, height 2s,color 0.5s, background-color 0.5s, -webkit-transform 2s;
+    transition: width 2s, height 2s,color 0.5s, background-color 0.5s, transform 2s;
+}
+
+.deleting {
+	background-color: #E26B6B;
+	color: white !important;
+}
+.booking_line_item.deleting a {
+	color: white !important;
+}
+.delete_booking:hover  {
+	color: white;
+	text-decoration: none;
+}
+.booking_line_item {
+	border-radius: 5px;
+	padding-right: 3px;
+	-webkit-transition: width 2s, height 2s,color 0.5s, background-color 0.5s, -webkit-transform 2s;
+    transition: width 2s, height 2s,color 0.5s, background-color 0.5s, transform 2s;
+}

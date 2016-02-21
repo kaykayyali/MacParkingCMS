@@ -51,7 +51,7 @@ class EmployeesController < ApplicationController
 			newProfile.user = current_user
 			newProfile.employee = newEmployee
 			newProfile.save
-			flash[:notice] = "Successfully created you profile."
+			flash[:notice] = "Successfully created your profile."
 			redirect_to('/employees')
 		end
 	end

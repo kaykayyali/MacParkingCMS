@@ -36,7 +36,13 @@ class StaffingController < ApplicationController
 		print "FLASH MESSAGE"
 		p flash.notice
 		@event = Event.find(params[:event_id])
-		@employees = Employee.all
+		@employees = Employee.all.select {|employee| !employee.events.include?(@event) }
+		# @employees.each do |employee| 
+		# 	if employee.events.include?(@event)
+		# 		@employees.to_arr.pop(employee)
+		# 		p "FOUND EVENT"
+		# 	end
+		# end
 		@bookings = Booking.where(event_id: @event.id)
 		doormen = @bookings.select do |elem|
 			elem.booking_type ==  "doorman"

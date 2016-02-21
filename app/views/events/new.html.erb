@@ -31,10 +31,17 @@
 					<label>Price</label>
 					<%= number_field_tag 'price',0,autofocus: false, class: "form-control" %>
 				</div>
-				<div class="form-group col-md-4">
-					<label>Date</label>
-					<%= date_field_tag 'date', Date.today, :class => "form-control" %>
-				</div>
+				<% if @date %>
+					<div class="form-group col-md-4">
+						<label>Date</label>
+						<%= date_field_tag 'date', @date, :class => "form-control" %>
+					</div>
+				<% else %>
+					<div class="form-group col-md-4">
+						<label>Date</label>
+						<%= date_field_tag 'date', Date.today, :class => "form-control" %>
+					</div>
+				<% end %>
 				<div class="form-group col-md-4">
 					<label>Start Time</label>
  					<input type="time" name ='start_time' class="form-control" value="<%= Time.now.strftime("%H:%M") %>">	

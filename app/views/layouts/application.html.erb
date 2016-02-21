@@ -74,7 +74,7 @@ function successBox(input, options) {
 		<h3 id="successText"></h3>
 	</div> 
 	<!-- END SUCCESS -->
-	<% if current_user.present? %>
+	<% if current_user.present? && current_user.profile %>
 	<div class="dropdown visible-sm visible-md visible-lg visible-xl">
 	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
 	    <span class="fa fa-bars"></span>
@@ -82,9 +82,7 @@ function successBox(input, options) {
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 
 	    <li class="dropdown-header">Site</li>
-	    <% if current_user.role == "admin" %>
-	    	<li><a href="/<%= current_user.id %>/home">Home</a></li>
-	    <% end %>
+	    <li><a href="/<%= current_user.id %>/home">Dashboard</a></li>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
@@ -108,9 +106,7 @@ function successBox(input, options) {
 	  </button>
 	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 	  	<li class="dropdown-header">Site</li>
-	  	<% if current_user.role == "admin" %>
-	    	<li><a href="/<%= current_user.id %>/home">Home</a></li>
-	    <% end %>
+	    <li><a href="/<%= current_user.id %>/home">Dashboard</a></li>
 	    <li><a href="/notes">Notes</a></li>
 	    <% if current_user.role == "admin" %>
 	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
