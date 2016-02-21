@@ -2,8 +2,8 @@ class EmployeesController < ApplicationController
 	before_action(:authenticate_user!)
 	before_action(:check_profile)
 	before_action(:check_Admin)
-	skip_before_action :check_Admin, only: [:create, :new, :update, :make_admin]
-	 skip_before_action :check_profile, only: [:create, :new]
+	skip_before_action :check_Admin, only: [:create, :new, :update, :make_admin, :update_model]
+	skip_before_action :check_profile, only: [:create, :new]
 	def index
 		if flash.notice
 			@notice = flash.notice

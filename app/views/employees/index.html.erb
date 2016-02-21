@@ -47,7 +47,7 @@
 											</div>
 											<div class="col-xs-4 col-md-4">
 												<% if employee.phone != "" %>
-													<%= employee.phone %>
+													<%= Phonelib.parse(employee.phone).national %>
 												<% else %>
 													Not Known
 												<% end %>

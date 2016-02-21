@@ -23,7 +23,7 @@
 				<h1><%= @employee.name %></h1>
 				<br>
 				<% if @employee.phone != "" %>				
-					<h4><%= @employee.phone %></h4>
+					<h4><%= Phonelib.parse(@employee.phone).national %></h4>
 				<% else %>
 					<h4>Sorry, there is no known phone number for this employee. <a href="<%= update_employee_path(@employee.id) %>">Click here to add one</a></h4>
 				<% end %>

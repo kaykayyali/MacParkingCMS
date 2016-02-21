@@ -76,6 +76,7 @@ GEM
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     pg (0.18.2)
+    phonelib (0.5.5)
     puma (2.12.3)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -164,6 +165,7 @@ DEPENDENCIES
   jquery-rails
   jquery-visibility-rails
   pg
+  phonelib
   puma
   rails (= 4.2.3)
   rails_12factor
