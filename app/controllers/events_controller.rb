@@ -44,9 +44,7 @@ class EventsController < ApplicationController
 		event.price = event_info[:price]
 		event.paid = event_info[:paid]
 		event.notes = event_info[:notes]
-		event[:excel_file] = event_info[:excel_file]
 		if event.save 
-			p event.excel_file
 			flash[:notice] = "Successfully created event"
 			redirect_to('/events')
 		end
@@ -74,9 +72,7 @@ class EventsController < ApplicationController
 		event.price = event_info[:price]
 		event.paid = event_info[:paid]
 		event.notes = event_info[:notes]
-		event[:excel_file] = event_info[:excel_file]
 		if event.save 
-			AvatarUploader.new.store!(params[:excel_file])
 			flash[:notice] = "Successfully updated event " + event.event_name
 			redirect_to('/events')
 		end
@@ -155,6 +151,6 @@ class EventsController < ApplicationController
 	end
 	private
 	def event_params
-		params.permit(:event_name,:excel_file, :event_type, :date, :start_time, :end_time, :guest_count, :contact_name, :contact_number, :street_address, :zipcode, :city, :state, :price, :paid, :notes)
+		params.permit(:event_name,:event_type, :date, :start_time, :end_time, :guest_count, :contact_name, :contact_number, :street_address, :zipcode, :city, :state, :price, :paid, :notes)
 	end
 end
