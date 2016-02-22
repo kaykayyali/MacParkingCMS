@@ -76,7 +76,6 @@ class EventsController < ApplicationController
 		event.notes = event_info[:notes]
 		event[:excel_file] = event_info[:excel_file]
 		if event.save 
-			AvatarUploader.new.store!(params[:excel_file])
 			flash[:notice] = "Successfully updated event " + event.event_name
 			redirect_to('/events')
 		end
