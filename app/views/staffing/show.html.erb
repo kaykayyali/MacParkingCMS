@@ -70,7 +70,7 @@
 	      				<%= employee.name %> 
 	      				<% if employee.phone %>
 	      					<small>
-	      						<%= employee.phone %>
+	      						<%= Phonelib.parse(employee.phone).national %>
 	      					</small>
 	      				<% end %>
 	      			</h4>
