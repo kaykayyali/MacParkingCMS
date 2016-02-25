@@ -29,13 +29,13 @@ get '/events' => 'events#index', as: "events"
 get '/events/show_employee/:event_id' => 'events#show_employee', as: "show_employee_path"
 get '/events/new' => 'events#new', as: "new_event"
 get '/events/new/:date' => 'events#new_with_date', as: "new_event_with_date"
-get '/events/update/:id' => 'events#update', as: "update_event"
-get '/events/show/:id' => 'events#show', as: "view_event"
+get '/events/:id/edit' => 'events#edit', as: "edit_event"
+get '/events/:id/show' => 'events#show', as: "event"
 get '/events/delete/:id' => 'events#delete', as: "delete_event"
 get '/events/getfeed' => 'events#generate_feed', as: "event_feed"
 get '/events/get_my_event_feed' => 'events#generate_my_event_feed', as: "my_event_feed"
 post '/events' => 'events#create'
-post '/events/update/:id' => 'events#update_model'
+patch '/events/:id/show' => 'events#update_model'
 
 #Applications
 get '/applications/:app_id' => "applications#show"

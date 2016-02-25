@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-	before_action(:authenticate_user!)
-	before_action(:check_profile)
-	before_action(:check_Admin)
-	skip_before_action :check_Admin, only: [:generate_my_event_feed, :show_employee]
+	# before_action(:authenticate_user!)
+	# before_action(:check_profile)
+	# before_action(:check_Admin)
+	# skip_before_action :check_Admin, only: [:generate_my_event_feed, :show_employee]
 	def index
 		if flash.notice
 			@notice = flash.notice
@@ -20,44 +20,39 @@ class EventsController < ApplicationController
 	end
 
 	def new
+		@event = Event.new()
+		@event.date = Date.today()
 		render('new')
 	end
 	def new_with_date
 		@date = params[:date]
-		p @date
+		@event = Event.new()
+		@event.date = params[:date]
 		render('new')
 	end
 	def create
 		event_info = event_params
-		event = Event.new()
-		event.event_name = event_info[:event_name]
-		event.date = event_info[:date]
-		event.start_time = event_info[:start_time]
-		event.end_time = event_info[:end_time]
-		event.guest_count = event_info[:guest_count]
-		event.contact_name = event_info[:contact_name]
-		event.contact_number = event_info[:contact_number]
-		event.street_address = event_info[:street_address]
-		event.zipcode = event_info[:zipcode]
-		event.city = event_info[:city]
-		event.state = event_info[:state]
-		event.price = event_info[:price]
-		event.paid = event_info[:paid]
-		event.notes = event_info[:notes]
+		event = Event.new(event_params)
+		if event_params[:paid] = "on"
+			event.paid = true
+		else 
+			event.paid = false
+		end
 		if event.save 
 			flash[:notice] = "Successfully created event"
 			redirect_to('/events')
 		end
 	end
 
-	def update
-		@event = Event.find(params[:id])
-		render('update')
+	def edit
+		@event = Event.find_by_id(params[:id])
+		p @event
 	end
 	def update_model
 		event_info = event_params
 		event = Event.find(params[:id])
 		event.event_name = event_info[:event_name]
+		event.excelfile = event_info[:excelfile]
 		event.date = event_info[:date]
 		event.start_time = event_info[:start_time]
 		event.end_time = event_info[:end_time]
@@ -71,8 +66,13 @@ class EventsController < ApplicationController
 		event.state = event_info[:state]
 		event.price = event_info[:price]
 		event.paid = event_info[:paid]
+		if event_params[:paid] = "on"
+			event.paid = true
+		else 
+			event.paid = false
+		end
 		event.notes = event_info[:notes]
-		if event.save 
+		if event.update(event_params) 
 			flash[:notice] = "Successfully updated event " + event.event_name
 			redirect_to('/events')
 		end
@@ -93,8 +93,9 @@ class EventsController < ApplicationController
 				new_feed_item[:start] = event.date
 				new_feed_item[:id] = event.id
 				p new_feed_item
-				event_feed_object.push(new_feed_item)
-				p event_feed_object
+				if new_feed_item[:start] 
+					event_feed_object.push(new_feed_item)
+				end
 			end
 			p "EVENT FEED"
 			p event_feed_object
@@ -120,8 +121,9 @@ class EventsController < ApplicationController
 				new_feed_item[:start] = event.date
 				new_feed_item[:id] = event.id
 				p new_feed_item
-				event_feed_object.push(new_feed_item)
-				p event_feed_object
+				if new_feed_item[:start] 
+					event_feed_object.push(new_feed_item)
+				end
 			end
 			p "EVENT FEED"
 			p event_feed_object
@@ -151,6 +153,7 @@ class EventsController < ApplicationController
 	end
 	private
 	def event_params
-		params.permit(:event_name,:event_type, :date, :start_time, :end_time, :guest_count, :contact_name, :contact_number, :street_address, :zipcode, :city, :state, :price, :paid, :notes)
+		p params
+		params.require(:event).permit(:event_name, :event_type, :excelfile, :date, :start_time, :end_time, :guest_count, :contact_name, :contact_number, :street_address, :zipcode, :city, :state, :price, :paid, :notes)
 	end
 end

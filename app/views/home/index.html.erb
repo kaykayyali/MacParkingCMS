@@ -27,7 +27,7 @@
 		    },
 		    eventClick: function(event) {
 		    	// console.log(event)
-		    	location.assign("/events/show/" + event.id);
+		    	location.assign("/events/" + event.id + '/show');
 		    },
 		    events: '<%= event_feed_path %>',
    		})
