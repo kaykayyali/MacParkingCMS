@@ -11,7 +11,11 @@
 			<div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
 			<button class="btn btn-primary btn-block" onclick="history.go(-1)">Back</button>
 				<h3>
-					Staffing for <a href="<%= view_event_path(@event.id)%>" class='blue_no_hover'> <%= @event.event_name%></a> <small>on <%= @event.date%> </small>
+					<% if @event.event_name != "" %>
+						Staffing for <a href="<%= event_path(@event.id)%>" class='blue_no_hover'> <%= @event.event_name%></a> <small>on <%= @event.date%> </small>
+					<% else %>
+						Staffing for <a href="<%= event_path(@event.id)%>" class='blue_no_hover'> Unnamed</a> <small>on <%= @event.date%> </small>
+					<% end %>
 					<ul class="list-inline pull-right">
 						<li><button class="btn btn-md btn-success add_person add_runner" id="Doorman">Add Doorman</button></li>
 						<li><button class="btn btn-md btn-warning add_person add_runner" id="Runner">Add Runner</button></li>
