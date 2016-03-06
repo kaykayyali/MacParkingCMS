@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306012401) do
+ActiveRecord::Schema.define(version: 20160306070128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,14 +60,21 @@ ActiveRecord::Schema.define(version: 20160306012401) do
     t.datetime "updated_at",     null: false
   end
 
+  create_table "booking_types", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.integer  "employee_id"
     t.integer  "event_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.string   "booking_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "booking_type_id"
   end
 
+  add_index "bookings", ["booking_type_id"], name: "index_bookings_on_booking_type_id", using: :btree
   add_index "bookings", ["employee_id"], name: "index_bookings_on_employee_id", using: :btree
   add_index "bookings", ["event_id"], name: "index_bookings_on_event_id", using: :btree
 
@@ -241,11 +248,11 @@ ActiveRecord::Schema.define(version: 20160306012401) do
   add_index "shift_reports", ["shift_id"], name: "index_shift_reports_on_shift_id", using: :btree
 
   create_table "shift_types", force: :cascade do |t|
-    t.string   "type"
     t.decimal  "rate"
     t.integer  "location_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "name"
   end
 
   add_index "shift_types", ["location_id"], name: "index_shift_types_on_location_id", using: :btree

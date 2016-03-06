@@ -83,7 +83,7 @@ get '/invoices/:id' => 'invoices#show'
 
 
 #locations
- # TBD
+ resources :locations
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

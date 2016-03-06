@@ -1,5 +1,6 @@
 class Shift < ActiveRecord::Base
 	belongs_to :location
 	has_one :shift_report
-	has_one :shift_type
+	belongs_to :shift_type
+	belongs_to :employee
 end

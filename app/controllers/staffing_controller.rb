@@ -3,7 +3,8 @@ class StaffingController < ApplicationController
 	before_action(:check_Admin)
 	def create_booking
 		newBooking = Booking.new()
-		newBooking.booking_type = params[:type]
+		newBooking.booking_type = BookingType.where(name: params[:type].capitalize).limit(1)[0]
+		p newBooking
 		newBooking.event_id = params[:event_id]
 		newBooking.employee_id = params[:employee_id]
 		if newBooking.save
@@ -15,16 +16,10 @@ class StaffingController < ApplicationController
 			print("FAILED TO SAVE NEW BOOKING")
 		end
 	end
-	def remove_booking
-		respond_to do |format|
-		  format.json { render json: {:status => 200} }
-		end	
-	end
 	def delete_booking
 		Booking.find(params[:booking_id]).delete
 		redirect_to(:back)
 	end
-
 	def show
 		if flash.notice
 			@notice = flash.notice
@@ -45,16 +40,16 @@ class StaffingController < ApplicationController
 		# end
 		@bookings = Booking.where(event_id: @event.id)
 		doormen = @bookings.select do |elem|
-			elem.booking_type ==  "doorman"
+			elem.booking_type.name ==  "Doorman"
 		end
 		runners = @bookings.select do |elem|
-			elem.booking_type ==  "runner"
+			elem.booking_type.name  ==  "Runner"
 		end
 		lotmen = @bookings.select do |elem|
-			elem.booking_type == "lotman"
+			elem.booking_type.name == "Lotman"
 		end
 		shuttles = @bookings.select do |elem|
-			elem.booking_type ==  "shuttle"
+			elem.booking_type.name ==  "Shuttle"
 		end
 		@types = ["doormen", "runners", "lotmen", "shuttles"]
 		@data_hash = {

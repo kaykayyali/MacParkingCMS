@@ -112,12 +112,9 @@ var event_id = <%= @event.id %>
 		})
 
 		$('.delete_booking').hover(function(event) {
-			console.log("Adding deleting", event)
 			$(event.target.parentElement).addClass('deleting');
-			console.log("Adding deleting", event)
 		}, function(event){
 			$(event.target.parentElement).removeClass('deleting');
-			console.log("Adding deleting", event)
 		})
 	})
 </script>

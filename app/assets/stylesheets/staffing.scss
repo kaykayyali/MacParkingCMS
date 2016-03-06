@@ -37,3 +37,10 @@
 	-webkit-transition: width 2s, height 2s,color 0.5s, background-color 0.5s, -webkit-transform 2s;
     transition: width 2s, height 2s,color 0.5s, background-color 0.5s, transform 2s;
 }
+.booking_line_item a {
+	color:#428bca !important;
+}
+.booking_line_item a:hover {
+	background: transparent;
+	text-decoration: none;
+}

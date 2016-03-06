@@ -1,27 +1,60 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing locations</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @locations.each do |location| %>
-      <tr>
-        <td><%= location.name %></td>
-        <td><%= link_to 'Show', location %></td>
-        <td><%= link_to 'Edit', edit_location_path(location) %></td>
-        <td><%= link_to 'Destroy', location, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New location', new_location_path %>
+<section id="notes" class="bg-default" >
+  <div class="container">
+      <div class="row text-right visible-sm visible-md visible-lg visible-xl">
+        <h2><small>Welcome</small> <%= current_user.email%></h2>
+      </div>
+      <div class="row text-right visible-xs">
+        <h4><small>Welcome</small> <%= current_user.email%></h4>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="<%=new_location_path%>" class="btn btn-primary btn-block">New location</a>
+        </div>
+        <div class="col-xs-12 visible-sm visible-md visible-lg visible-xl">
+          <h3>Locations</h3>
+        </div>
+        <div class="col-xs-12 visible-xs">
+          <br>
+          <h5>Locations</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="text-center">
+          <div class="col-xs-6 col-md-6">
+            <h5>Name</h5>
+          </div>
+          <div class="col-xs-6 col-md-6">
+            <h5>Address</h5>
+          </div>
+          <ul class="list-unstyled" id="notesList">
+            <% @color = 1 %>
+            <% @locations.each do |location| %>
+              <% if @color == 1 %>
+                <li class="note clearfix">
+              <% @color = 2 %>
+              <% else %>
+                <li class="noteAlt clearfix">
+                <% @color = 1 %>
+              <% end %>
+                  <a href="/locations/<%= location.id %>/show ">
+                    <span class="lead">
+                      <div class="col-xs-6 col-md-6">
+                        <%= location.name %>
+                      </div>
+                      <div class="col-xs-6 col-md-6">
+                        <% if location.address %>
+                          <%= location.address%>
+                        <% else %>
+                          Not Known
+                        <% end %>
+                      </div>
+                    </span>
+                  </a>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+  </div>
+</section>

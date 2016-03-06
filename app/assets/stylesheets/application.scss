@@ -26,13 +26,22 @@
 }
 
 .blue_no_hover {
-	color:#428bca;
+	color:#428bca !important;
 }
 .blue_no_hover:hover {
 	text-decoration: none;
-	color: lightgrey;
+	color: lightgrey !important;
 }
 a, a:link, a:visited {
 	text-decoration: none;
 	color: white ;
+}
+td a, td a:link,td a:visited {
+	color: lightgrey !important;
+}
+a:hover {
+	background-color: transparent ;
+}
+.dropdown-menu>li>a {
+	color: black !important;
 }
