@@ -81,6 +81,14 @@ get '/nova' => "nova#index", as: 'nova_home'
 #testing
 get '/invoices/:id' => 'invoices#show'
 
+
+#locations
+  resources :locations do
+    resources :shifts
+    resources :shift_types
+    resources :shift_reports
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306004310) do
+ActiveRecord::Schema.define(version: 20160306012401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,6 +135,13 @@ ActiveRecord::Schema.define(version: 20160306004310) do
     t.datetime "updated_at",                               null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string   "address"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "nbcomments", force: :cascade do |t|
     t.text     "content"
     t.integer  "user_id"
@@ -221,6 +228,41 @@ ActiveRecord::Schema.define(version: 20160306004310) do
 
   add_index "profiles", ["employee_id"], name: "index_profiles_on_employee_id", using: :btree
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "shift_reports", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "location_id"
+    t.integer  "shift_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shift_reports", ["location_id"], name: "index_shift_reports_on_location_id", using: :btree
+  add_index "shift_reports", ["shift_id"], name: "index_shift_reports_on_shift_id", using: :btree
+
+  create_table "shift_types", force: :cascade do |t|
+    t.string   "type"
+    t.decimal  "rate"
+    t.integer  "location_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "shift_types", ["location_id"], name: "index_shift_types_on_location_id", using: :btree
+
+  create_table "shifts", force: :cascade do |t|
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "employee_id"
+    t.integer  "shift_type_id"
+    t.integer  "location_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "shifts", ["employee_id"], name: "index_shifts_on_employee_id", using: :btree
+  add_index "shifts", ["location_id"], name: "index_shifts_on_location_id", using: :btree
+  add_index "shifts", ["shift_type_id"], name: "index_shifts_on_shift_type_id", using: :btree
 
   create_table "subscriptions", force: :cascade do |t|
     t.string   "email",      null: false
