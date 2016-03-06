@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mac Parking Inc.</title>
+  	<%= stylesheet_link_tag "fullcalendar.css" %>
+	<%= javascript_include_tag 'moment.min.js'%>
+	<%= javascript_include_tag 'application' %>
+	<%= javascript_include_tag 'fullcalendar.js' %>
+  	<%= stylesheet_link_tag    'fullcalendar.css', media: 'all'%>
+ 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+ 	<%= csrf_meta_tags %>
+</head>
+<body>
+<script>
+function alertBox(input, options) {
+var that = this
+	this.timer = 3000,
+	redirect_address = null
+	$('#alertText').text(input)
+	$('#alertBox').slideToggle()
+	if (options) {
+		if (options.timer){
+			this.timer = options.timer
+		}
+		if (options.redirect_address){
+			console.log(options.redirect_address)
+			this.redirect_address = options.redirect_address
+		}
+	}
+	setTimeout(function() {
+		$('#alertBox').slideToggle()
+		if (that.redirect_address) {
+			console.log("Redirecting")
+			window.location.replace(that.redirect_address);
+		}
+	}, 
+	this.timer)
+}
+
+function successBox(input, options) {
+	var that = this
+	this.timer = 3000,
+	redirect_address = null
+	$('#successText').text(input)
+	$('#successBox').slideToggle()
+	if (options) {
+		if (options.timer){
+			this.timer = options.timer
+		}
+		if (options.redirect_address){
+			console.log(options.redirect_address)
+			this.redirect_address = options.redirect_address
+		}
+	}
+	setTimeout(function() {
+		$('#successBox').slideToggle()
+		if (that.redirect_address) {
+			console.log("Redirecting")
+			window.location.replace(that.redirect_address);
+		}
+	}, 
+	this.timer)
+}
+</script>
+
+<!-- ALERT -->
+	<div class="alert alert-danger text-center" id= "alertBox" style="display:none;">
+		<h3 id="alertText"></h3>
+	</div> 
+	<!-- END ALERT -->
+
+	<!-- SUCCESS -->
+	<div class="success alert-success text-center" id= "successBox" style="display:none;">
+		<h3 id="successText"></h3>
+	</div> 
+	<!-- END SUCCESS -->
+	<% if current_user.present? && current_user.profile %>
+	<div class="dropdown visible-sm visible-md visible-lg visible-xl">
+	  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
+	    <span class="fa fa-bars"></span>
+	  </button>
+	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+	    <li class="dropdown-header">Site</li>
+	    <li><a href="/<%= current_user.id %>/home">Dashboard</a></li>
+	    <li><a href="/notes">Notes</a></li>
+	    <% if current_user.role == "admin" %>
+	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="<%= events_path %> ">Events</a></li>
+	    	<li><a href="/nova">Nova</a></li>
+	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
+	    	<li><a href="<%= employees_path %> ">Employees</a></li>
+	    <% end %>
+	  	<li class="dropdown-header">User</li>
+	  	<% if current_user.profile %>
+	    	<li><a href="<%= update_employee_path(current_user.profile.employee.id) %>">Profile</a></li>
+	    <% end%>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
+	  </ul>
+	</div>
+	<!-- Mobile Version -->
+	<div class="dropdown visible-xs">
+	  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin:20px 0 0 20px">
+	    <span class="fa fa-bars"></span>
+	  </button>
+	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	  	<li class="dropdown-header">Site</li>
+	    <li><a href="/<%= current_user.id %>/home">Dashboard</a></li>
+	    <li><a href="/notes">Notes</a></li>
+	    <% if current_user.role == "admin" %>
+	    	<li><a href="/<%= current_user.id %>/applications">Applications</a></li>
+	    	<li><a href="<%= events_path %> ">Events</a></li>
+	    	<li><a href="/nova">Nova</a></li>
+	    	<li><a href="<%= payrolls_path %> ">Payrolls</a></li>
+	    	<li><a href="<%= employees_path %> ">Employees</a></li>
+	    <% end %>
+	    <li class="dropdown-header">User</li>
+	    <% if current_user.profile %>
+	    	<li><a href="<%= update_employee_path(current_user.profile.employee.id) %>">Profile</a></li>
+	    <% end%>
+	    <li role="separator" class="divider"></li>
+	    <li><a href="/users/sign_out" data-method="delete">Sign Out</a> </li>
+	  </ul>
+	</div>
+	<% end%> 
+	<% if @notice %>
+		<script>
+			successBox('<%= @notice %>');
+		</script>
+	<% elsif @alert %>
+		<script>
+			alertBox('<%= @alert %>');
+		</script>
+	<% end %>
+<%= yield %>
+
+</body>
+</html>

@@ -8,10 +8,15 @@ section#notes{
 }
 li.note{
 	padding: 10px;
+	color: black;
 }
 li.noteAlt{
 	background-color: #EFEFEF;
 	padding: 10px;
+	color: black;
+}
+li.note a, li.noteAlt a {
+	color: black;
 }
 li span.lead{
 	margin-bottom: 0;
