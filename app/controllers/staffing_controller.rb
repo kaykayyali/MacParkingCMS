@@ -3,8 +3,7 @@ class StaffingController < ApplicationController
 	before_action(:check_Admin)
 	def create_booking
 		newBooking = Booking.new()
-		newBooking.booking_type = BookingType.where(name: params[:type].capitalize).limit(1)[0]
-		p newBooking
+		newBooking.booking_type_id = BookingType.where(name: params[:type].capitalize).limit(1)[0].id
 		newBooking.event_id = params[:event_id]
 		newBooking.employee_id = params[:employee_id]
 		if newBooking.save
