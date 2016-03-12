@@ -81,6 +81,12 @@ class EmployeesController < ApplicationController
 
 	def delete
 		employee = Employee.find(params[:id])
+		if employee.profile
+			employee.profile.delete
+		end
+		if employee.profile.user
+			employee.profile.user.delete
+		end
 		employee.delete
 		redirect_to('/employees')
 	end

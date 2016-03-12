@@ -95,6 +95,10 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20160309)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.1.0)
+    dotenv-rails (2.1.0)
+      dotenv (= 2.1.0)
+      railties (>= 4.0, < 5.1)
     easy-sms (0.9.1)
       json (~> 1.8)
       rest-client (~> 1.8)
@@ -252,6 +256,7 @@ DEPENDENCIES
   carrierwave!
   carrierwave-aws
   devise
+  dotenv-rails
   easy-sms
   jbuilder (~> 2.0)
   jquery-rails
