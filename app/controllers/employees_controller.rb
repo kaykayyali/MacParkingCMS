@@ -52,6 +52,13 @@ class EmployeesController < ApplicationController
 			newProfile.employee = newEmployee
 			newProfile.save
 			flash[:notice] = "Successfully created your profile."
+			if newEmployee.phone != nil || newEmployee.phone != ""
+				Twilio_Client.account.messages.create({
+					:from => '+12607880786', 
+					:to => newEmployee.phone.to_s, 
+					:body => "Thank you for signing up with Mac Parking Online",  
+				})
+			end
 			redirect_to('/employees')
 		end
 	end

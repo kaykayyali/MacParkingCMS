@@ -85,6 +85,11 @@ get '/invoices/:id' => 'invoices#show'
 #locations
  resources :locations
 
+
+ #sms
+  post 'sms/test' => 'sms_handler#test'
+  post 'sms/send_message' => 'sms_handler#send_message'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

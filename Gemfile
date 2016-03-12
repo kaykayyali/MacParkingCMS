@@ -21,7 +21,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'easy-sms'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
@@ -34,6 +34,7 @@ gem 'wkhtmltopdf-binary'
 gem 'phonelib'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'carrierwave-aws'
+gem 'twilio-ruby'
 gem 'activeadmin', '~> 1.0.0.pre2'
 
 group :development, :test do
