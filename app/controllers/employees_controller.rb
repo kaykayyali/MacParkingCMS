@@ -34,9 +34,10 @@ class EmployeesController < ApplicationController
 		newEmployee.email = employee_info[:email]
 		newEmployee.phone = employee_info[:phone]
 		p Phonelib.valid?(newEmployee.phone)
-		if Phonelib.valid?(newEmployee.phone)
+		if !Phonelib.valid?(newEmployee.phone)
 			flash[:alert] = "Phone number was invalid"
 			redirect_to('/employees/new')
+			return
 		end
 		if newEmployee.save 
 			newProfile = Profile.new
