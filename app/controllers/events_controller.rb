@@ -1,8 +1,8 @@
 class EventsController < ApplicationController
-	# before_action(:authenticate_user!)
+	before_action(:authenticate_user!)
 	# before_action(:check_profile)
 	# before_action(:check_Admin)
-	# skip_before_action :check_Admin, only: [:generate_my_event_feed, :show_employee]
+	skip_before_action :check_Admin, only: [:generate_my_event_feed, :show_employee]
 	def index
 		if flash.notice
 			@notice = flash.notice

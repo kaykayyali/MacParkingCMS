@@ -21,7 +21,7 @@ class HomeController < ApplicationController
 	end
 	def check_profile 
 		if !current_user.profile 
-			flash[:alert] = "You must create a profile to see this"
+			flash[:notice] = "Please create a profile"
 			redirect_to(new_employee_path)
 		end
 	end
