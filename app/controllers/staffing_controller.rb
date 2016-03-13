@@ -67,7 +67,7 @@ class StaffingController < ApplicationController
 					Twilio_Client.account.messages.create({
 						:from => ENV['TWILIO_NUMBER'], 
 						:to => booking.employee.phone.to_s, 
-						:body => "You have been scheduled for a new event, view it at http://www.macparking.co/events/show_employee/" + @event.id.to_s ,  
+						:body => "You have been scheduled as a " + booking.booking_type.name + " for a new event, view it at http://www.macparking.co/events/show_employee/" + @event.id.to_s ,  
 					})
 				else
 					p "No number for employee " + booking.employee.to_s
