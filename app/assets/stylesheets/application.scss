@@ -45,3 +45,11 @@ a:hover {
 .dropdown-menu>li>a {
 	color: black !important;
 }
+@media only screen and (max-width: 500px) {
+    #alertText {
+        font-size: 10px !important;
+    }
+    #successText {
+        font-size: 10px !important;
+    }
+}
