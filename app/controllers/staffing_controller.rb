@@ -31,12 +31,6 @@ class StaffingController < ApplicationController
 		p flash.notice
 		@event = Event.find(params[:event_id])
 		@employees = Employee.all.select {|employee| !employee.events.include?(@event) }
-		# @employees.each do |employee| 
-		# 	if employee.events.include?(@event)
-		# 		@employees.to_arr.pop(employee)
-		# 		p "FOUND EVENT"
-		# 	end
-		# end
 		@bookings = Booking.where(event_id: @event.id)
 		doormen = @bookings.select do |elem|
 			elem.booking_type.name ==  "Doorman"
@@ -58,6 +52,32 @@ class StaffingController < ApplicationController
 			:shuttles => shuttles,
 		}
 		render('show')
+	end
+	def confirm_crew
+		@event = Event.find_by(id: params[:event_id])
+		if @event.confirmed == true
+			render json: { status: 200, event: "Event was already confirmed"}
+			return
+		end
+		@bookings = Booking.where(event_id: @event.id)
+		@bookings.each do |booking|
+			if booking.employee
+				if booking.employee.phone != nil && Phonelib.valid?(booking.employee.phone)
+					p "Attempting to message " + booking.employee.name + " about event " + @event.id.to_s
+					Twilio_Client.account.messages.create({
+						:from => ENV['TWILIO_NUMBER'], 
+						:to => booking.employee.phone.to_s, 
+						:body => "You have been scheduled for a new event, view it at http://www.macparking.co/events/show_employee/" + @event.id.to_s ,  
+					})
+				else
+					p "No number for employee " + booking.employee.to_s
+				end
+			else
+				p "No employee for booking " + booking.id.to_s
+			end
+		end
+		@event.update(confirmed: true)
+		render json: { status: 200, event: "Confirmed employees"}
 	end
 	def check_profile 
 		flash[:notice] = "You must create a profile to see this"

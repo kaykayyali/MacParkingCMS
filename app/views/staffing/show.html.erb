@@ -17,6 +17,7 @@
 						Staffing for <a href="<%= event_path(@event.id)%>" class='blue_no_hover'> Unnamed</a> <small>on <%= @event.date%> </small>
 					<% end %>
 					<ul class="list-inline pull-right">
+						<li><%= button_to('Confirm Crew', confirm_crew_path, remote: true, data: { confirm: 'Are you sure?', disable_with: 'Sending...' }) %></li>
 						<li><button class="btn btn-md btn-success add_person add_runner" id="Doorman">Add Doorman</button></li>
 						<li><button class="btn btn-md btn-warning add_person add_runner" id="Runner">Add Runner</button></li>
 						<li><button class="btn btn-md btn-info add_person add_runner" id="Lotman">Add Lotman</button></li>
@@ -117,6 +118,12 @@ var event_id = <%= @event.id %>
 			$(event.target.parentElement).removeClass('deleting');
 		})
 	})
+	var confirm_crew = function() {
+		confirm("Are you sure you would like to confirm this event?", double_confirm())
+	}
+	var double_confirm = function() {
+		confirm("This will send a text message to all staffed employees with a valid phone number", location.load(''))
+	}
 </script>
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160306070128) do
+ActiveRecord::Schema.define(version: 20160313035445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,9 +116,8 @@ ActiveRecord::Schema.define(version: 20160306070128) do
     t.time     "start_time"
     t.time     "end_time"
     t.date     "date"
-    t.string   "excel_file"
     t.string   "excelfile"
-    t.string   "avatar"
+    t.boolean  "confirmed"
   end
 
   create_table "invoices", force: :cascade do |t|
@@ -191,11 +190,6 @@ ActiveRecord::Schema.define(version: 20160306070128) do
     t.string   "title"
     t.text     "content"
     t.string   "created_by"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "payrollassociations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

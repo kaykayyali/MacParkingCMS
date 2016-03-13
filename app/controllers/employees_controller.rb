@@ -2,16 +2,10 @@ class EmployeesController < ApplicationController
 	before_action(:authenticate_user!)
 	before_action(:check_profile)
 	before_action(:check_Admin)
+	before_action(:set_alerts)
 	skip_before_action :check_Admin, only: [:create, :new, :update, :make_admin, :update_model]
 	skip_before_action :check_profile, only: [:create, :new]
 	def index
-		if flash.notice
-			@notice = flash.notice
-			p(@notice)
-		elsif flash.alert
-			@alert = flash.alert
-			p(@alert)
-		end
 		@employees = Employee.all
 		render('index')
 	end
@@ -25,13 +19,6 @@ class EmployeesController < ApplicationController
 
 	end
 	def show
-		if flash.notice
-			@notice = flash.notice
-			p(@notice)
-		elsif flash.alert
-			@alert = flash.alert
-			p(@alert)
-		end
 		@employee = Employee.find(params[:id])
 		render('show')
 	end
@@ -46,15 +33,20 @@ class EmployeesController < ApplicationController
 		newEmployee.name = employee_info[:name]
 		newEmployee.email = employee_info[:email]
 		newEmployee.phone = employee_info[:phone]
+		p Phonelib.valid?(newEmployee.phone)
+		if Phonelib.valid?(newEmployee.phone)
+			flash[:alert] = "Phone number was invalid"
+			redirect_to('/employees/new')
+		end
 		if newEmployee.save 
 			newProfile = Profile.new
 			newProfile.user = current_user
 			newProfile.employee = newEmployee
 			newProfile.save
 			flash[:notice] = "Successfully created your profile."
-			if newEmployee.phone != nil || newEmployee.phone != ""
+			if newEmployee.phone != ""
 				Twilio_Client.account.messages.create({
-					:from => '+12607880786', 
+					:from => ENV['TWILIO_NUMBER'], 
 					:to => newEmployee.phone.to_s, 
 					:body => "Thank you for signing up with Mac Parking Online",  
 				})
@@ -73,6 +65,14 @@ class EmployeesController < ApplicationController
 		employee.name = employee_info[:name]
 		employee.email = employee_info[:email]
 		employee.phone = employee_info[:phone]
+		p "PHONE LIB"
+		p Phonelib.valid?(employee.phone)
+		if !Phonelib.valid?(employee.phone)
+			p "FALSE!!!!!"
+			flash[:alert] = "Phone number was invalid"
+			redirect_to(update_employee_path(employee.id))
+			return
+		end
 		if employee.save 
 			flash[:notice] = "Successfully updated Employee " + employee.name
 			redirect_to('/employees')
@@ -94,6 +94,15 @@ class EmployeesController < ApplicationController
 	# def mini_view
 	# 	render('mini_view')
 	# end
+	def set_alerts
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
+	end
 
 	def check_Admin
 		if current_user.role != "admin"
