@@ -88,7 +88,7 @@
 					<label>Street Address</label>
 					<br>
 					<% if @event.street_address != "" %>
-						<%= @event.street_address %>
+						<a href="http://maps.google.com/?q<%= @event.street_address %>" class="blue_no_hover"><%= @event.street_address %></a>
 					<% else %>
 						Not Known
 					<% end %>

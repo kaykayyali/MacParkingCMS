@@ -64,10 +64,15 @@ class StaffingController < ApplicationController
 			if booking.employee
 				if booking.employee.phone != nil && Phonelib.valid?(booking.employee.phone)
 					p "Attempting to message " + booking.employee.name + " about event " + @event.id.to_s
+					if booking.employee.profile.user.role == "admin"
+						url = "http://www.macparking.co/events/" + @event.id.to_s + '/show'
+					else
+						url = "http://www.macparking.co/events/show_employee/" + @event.id.to_s
+					end
 					Twilio_Client.account.messages.create({
 						:from => ENV['TWILIO_NUMBER'], 
 						:to => booking.employee.phone.to_s, 
-						:body => "You have been scheduled as a " + booking.booking_type.name + " for a new event, view it at http://www.macparking.co/events/show_employee/" + @event.id.to_s ,  
+						:body => "You have been scheduled as a " + booking.booking_type.name + " for a new event, view it at " + url ,  
 					})
 				else
 					p "No number for employee " + booking.employee.to_s
