@@ -1,1 +1,0 @@
-$SMS = EasySMS::Client.new('https://56e474fe29d9690006000005:91c5f7936cefe6b33dff17578e205683@api.easysmsapp.com/accounts/56e474fe29d9690006000005')
