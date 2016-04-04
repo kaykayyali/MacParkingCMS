@@ -11,6 +11,7 @@ class EventsController < ApplicationController
 			@alert = flash.alert
 			p(@alert)
 		end
+		@month = Date.today.strftime("%B") + " " + Date.today.year.to_s
 		@events = Event.where('extract(month from date) = ?', Date.today.month)
 		render('index')
 	end
@@ -22,14 +23,17 @@ class EventsController < ApplicationController
 			@alert = flash.alert
 			p(@alert)
 		end
+		@month = Date::MONTHNAMES[params[:month].to_i] + " " + Date.today.year.to_s
 		@events = Event.where('extract(month from date) = ?', params[:month])
 		render('index')
 	end
 	def index_unpaid
+		@month = ""
 		@events = Event.where('paid = false')
 		render('index_unpaid')
 	end
 	def index_unpaid_by_month
+		@month = "for " + Date::MONTHNAMES[params[:month].to_i] + " " + Date.today.year.to_s
 		@events = Event.where('paid = false and extract(month from date) = ?', params[:month])
 		render('index_unpaid')
 	end
