@@ -11,8 +11,27 @@ class EventsController < ApplicationController
 			@alert = flash.alert
 			p(@alert)
 		end
-		@events = Event.all
+		@events = Event.where('extract(month from date) = ?', Date.today.month)
 		render('index')
+	end
+	def index_by_month
+		if flash.notice
+			@notice = flash.notice
+			p(@notice)
+		elsif flash.alert
+			@alert = flash.alert
+			p(@alert)
+		end
+		@events = Event.where('extract(month from date) = ?', params[:month])
+		render('index')
+	end
+	def index_unpaid
+		@events = Event.where('paid = false')
+		render('index_unpaid')
+	end
+	def index_unpaid_by_month
+		@events = Event.where('paid = false and extract(month from date) = ?', params[:month])
+		render('index_unpaid')
 	end
 	def show
 		@event = Event.find(params[:id])
@@ -33,11 +52,14 @@ class EventsController < ApplicationController
 	def create
 		event_info = event_params
 		event = Event.new(event_params)
-		if event_params[:paid] = "on"
+		if event_params[:paid] == "on"
 			event.paid = true
 		else 
 			event.paid = false
 		end
+		p "PAID!!"
+
+		p event_params
 		if event.save 
 			flash[:notice] = "Successfully created event"
 			redirect_to('/events')

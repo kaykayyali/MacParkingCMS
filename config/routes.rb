@@ -28,7 +28,7 @@ post '/employees/update/:id' => 'employees#update_model'
 
 # Events
 get '/events' => 'events#index', as: "events"
-get '/events/show_employee/:event_id' => 'events#show_employee', as: "show_employee_path"
+get '/events/show_employee/:event_id' => 'events#show_employee', as: "show_employee"
 get '/events/new' => 'events#new', as: "new_event"
 get '/events/new/:date' => 'events#new_with_date', as: "new_event_with_date"
 get '/events/:id/edit' => 'events#edit', as: "edit_event"
@@ -36,6 +36,9 @@ get '/events/:id/show' => 'events#show', as: "event"
 get '/events/delete/:id' => 'events#delete', as: "delete_event"
 get '/events/getfeed' => 'events#generate_feed', as: "event_feed"
 get '/events/get_my_event_feed' => 'events#generate_my_event_feed', as: "my_event_feed"
+get '/events/by_month/:month' => 'events#index_by_month', as: 'show_events_by_month'
+get '/events/unpaid' => 'events#index_unpaid', as: 'unpaid_events'
+get '/events/unpaid/:month' => 'events#index_unpaid_by_month', as: 'unpaid_events_by_month'
 post '/events' => 'events#create'
 patch '/events/:id/show' => 'events#update_model'
 
