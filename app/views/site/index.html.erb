@@ -1,26 +1,30 @@
 <!DOCTYPE html>
 <html>
-<body>  
+<body class="home ">  
 	<!-- MAIN -->
 	<section id="home_main" class="bg-default">
-		<div class="container slideIn">
+		<div class="container ">
 			<div class="row">
-				<div class="col-sm-6 col-xs-12 text-center">
-					<%= image_tag('mac.jpg', :class => 'img-responsive') %>
-				</div>
-				<div class="col-sm-6 col-xs-12 text-center">
-					<p class="home_main lead">
+				<!-- <div class="col-xs-12 col-sm-6">
+					<%= image_tag('mac.jpg', :class => 'img-responsive center-block') %>
+				</div> -->
+				<div class="col-xs-12 text-center">
+					<!-- <p class="home_main lead">
 						Mac Parking Inc. is a Valet service serving all of South Florida. We provide an easy and seamless way to organize the parking logistics at your events. <a href="#home_contact_us">Contact us </a> to find out how we can help you with your next event.
-					</p>
+					</p> -->
+					<div class="jumbotron home_jumbo">
+						<p>Mac Parking Inc. is a Valet service serving all of South Florida. We provide an easy and seamless way to organize the parking logistics at your events. <a href="#home_contact_us">Contact us </a> to find out how we can help you with your next event.</p>
+						<p><a class="btn btn-primary btn-lg" href="#home_estimate" role="button">Get an estimate</a></p>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 	<!-- END MAIN -->
-
+<div class="deco_gradient">
 	<!-- ABOUT -->
-	<section id="home_about" class="bg-primary">
-		<div class="container slideIn">
+	<section id="home_about" class="">
+		<div class="container ">
 			
 			<div class="row text-center">
 				<div class="col-xs-12 col-sm-4">
@@ -44,8 +48,8 @@
 	<!-- END ABOUT -->
 
 	<!-- ESTIMATE -->
-	<section id="home_estimate" class="bg-success">
-		<div class="container slideIn">
+	<section id="home_estimate" class="">
+		<div class="container ">
 			<div class="row text-center">
 				<div class="col-xs-12">
 					<h2>Get a Free Estimate for your next event.</h2>
@@ -102,8 +106,8 @@
 	<!-- ESTIMATE END -->
 
 	<!-- SUBSCRIBE -->
-	<section id="home_subscribe" class="bg-primary">
-		<div class="container slideIn">
+	<section id="home_subscribe" class="">
+		<div class="container ">
 			<div class="row text-center">
 				<div class="col-xs-12">
 					<h2>Subscribe to our newsletter and promotional deals!</h2>
@@ -111,7 +115,7 @@
 			</div>
 			<br>
 			<div class="row">
-				<div class="col-xs-12 col-sm-6 center-block">
+				<div class="col-xs-12 center-block">
 					<div class="form-group">
 						<label>Email</label>
 						<input type="email" class="form-control" id="newsEmail">
@@ -126,8 +130,8 @@
 	<!-- END SUBSCRIBE -->
 
 	<!-- CONTACT US FORM -->
-	<section id="home_contact_us" class="bg-success">
-		<div class="container slideIn">
+	<section id="home_contact_us" class="">
+		<div class="container ">
 			<div class="row">
 				<div class="col-xs-12 center-block text-center">
 					<h1>Contact Us</h1>
@@ -159,12 +163,13 @@
 		</div>
 	</section>
 	<!-- END CONTACT US FORM -->
+</div>
 	
 	
-	<span class="home_login btn-group">
+<!-- 	<span class="home_login btn-group">
 		<a href="<%=new_user_session_path%>" class="login btn-primary btn">Login</a>
 		<a href=" <%=new_user_registration_path%>" class="signup btn-success btn">Signup</a>
-	</span>
+	</span> -->
   <script src="https://maps.googleapis.com/maps/api/js?signed_in=true&libraries=places&callback=initAutocomplete"
         async defer></script>
 </body>
