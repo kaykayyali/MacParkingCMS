@@ -114,7 +114,23 @@
 			email: email,
 			content: content
 		}
-		$.post('/contactus', payload)
+		if (!payload.name) {
+			alertBox("Please enter your name.");
+			return;
+		}
+		if (!payload.email) {
+			alertBox("Please enter your email.");
+			return;
+		}
+		if (!payload.phone) {
+			alertBox("Please enter your phone number.");
+			return;
+		}
+		if (!payload.content) {
+			alertBox("Please enter a message.");
+			return;
+		}
+		$.post('/contactus', payload);
 		successBox("Sent Successfully")
 		$('#contactName').val('');
 		$('#contactPhone').val('');
