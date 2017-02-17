@@ -14,7 +14,7 @@
 					</p> -->
 					<div class="jumbotron home_jumbo">
 						<p>Mac Parking Inc. is a Valet service serving all of South Florida. We provide an easy and seamless way to organize the parking logistics at your events. <a href="#home_contact_us">Contact us </a> to find out how we can help you with your next event.</p>
-						<p> <a class="btn btn-primary btn-lg" href="tel:786-587-7176" role="button">Call</a> <a class="btn btn-primary btn-lg" href="mailto:macparkingmiami@gmail.com" role="button">Email</a></p>
+						<p> <a class="btn btn-primary btn-lg" href="tel:786-587-7176" role="button">Call</a> <a class="btn btn-primary btn-lg" href="mailto:macparkingmiami@gmail.com?subject=Interested in your services" role="button">Email</a></p>
 					</div>
 				</div>
 			</div>
@@ -133,32 +133,42 @@
 			<div class="row">
 				<div class="col-xs-12 center-block text-center">
 					<h1>Contact Us</h1>
+					<br>
 					<ul class="list-inline">
-						<li>Email:<a href='mailto:macparkingmiami@gmail.com'> macparkingmiami@gmail.com</a></li>
+						<li>Email:<a href='mailto:macparkingmiami@gmail.com?subject=Interested in your services'> macparkingmiami@gmail.com</a></li>
    						<li>Phone:<a href="tel:786-587-7176"> 786-587-7176</a></li>
+   						<li><button class="btn btn-primary btn-xs" id="quick-form">Quick Form</button></li>
+   						<script>
+   							$('#quick-form').on('click', function() {
+   								$('#form_hider').fadeIn();
+   							});
+   						</script>
 					</ul>
-						<div class="col-xs-12 col-sm-4">
-							<div class="form-group">
-								<input class="form-control" type="name" placeholder="Name" id="contactName">
+					<br>
+						<div id="form_hider" style="display: none;">
+							<div class="col-xs-12 col-sm-4">
+								<div class="form-group">
+									<input class="form-control" type="name" placeholder="Name" id="contactName">
+								</div>
 							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4">
-							<div class="form-group">
-								<input class="form-control" type="email" placeholder="Email" id="contactEmail">
+							<div class="col-xs-12 col-sm-4">
+								<div class="form-group">
+									<input class="form-control" type="email" placeholder="Email" id="contactEmail">
+								</div>
 							</div>
-						</div>
-						<div class="col-xs-12 col-sm-4">
-							<div class="form-group">
-								<input class="form-control" type="phone" placeholder="Phone" id="contactPhone">
+							<div class="col-xs-12 col-sm-4">
+								<div class="form-group">
+									<input class="form-control" type="phone" placeholder="Phone" id="contactPhone">
+								</div>
 							</div>
-						</div>
-						<div class="col-xs-12">
-							<div class="form-group">
-									<textarea class="form-control" rows="3" placeholder="Message" id="contactContent"></textarea>
+							<div class="col-xs-12">
+								<div class="form-group">
+										<textarea class="form-control" rows="3" placeholder="Message" id="contactContent"></textarea>
+								</div>
 							</div>
-						</div>
-						<div class="col-xs-12">
-							<button type="submit" class="btn btn-default btn-block" id="contactButton" style="font-size:30px;">Send Message</button>
+							<div class="col-xs-12">
+								<button type="submit" class="btn btn-default btn-block" id="contactButton" style="font-size:30px;">Send Message</button>
+							</div>
 						</div>
 				</div>
 			</div>
