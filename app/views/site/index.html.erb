@@ -97,10 +97,17 @@
 			<div class="row text-center">
 				<div class="col-xs-12">
 					<h2>Get a Free Estimate for your next event.</h2>
+					<h4><button class="btn btn-success btn-sm" id="quick-estimate">Start</button></h4>
 				</div>
 			</div>
+			<script>
+				$('#quick-estimate').on('click', function() {
+					$('#estimate-hider').fadeIn();
+					$('#quick-estimate').hide();
+				});
+			</script>
 			<br>
-			<div class="row">
+			<div class="row" id="estimate-hider" style="display: none;">
 				<div class="col-xs-12 col-sm-6 text-center" style="color: white;">
 					<h3>Party Information</h3>
 					<div class="col-xs-12">
@@ -179,12 +186,13 @@
 					<h1>Contact Us</h1>
 					<br>
 					<ul class="list-inline">
-						<li>Email:<a href='mailto:macparkingmiami@gmail.com?subject=Interested in your services'> macparkingmiami@gmail.com</a></li>
-   						<li>Phone:<a href="tel:786-587-7176"> 786-587-7176</a></li>
-   						<li><button class="btn btn-primary btn-xs" id="quick-form">Quick Form</button></li>
+						<li><h4>Phone:<a href="tel:786-587-7176"> 786-587-7176</a></h4></li>
+						<li><h4>Email:<a href='mailto:macparkingmiami@gmail.com?subject=Interested in your services'> macparkingmiami@gmail.com</a></h4></li>
+   						<li><h4><button class="btn btn-primary btn-sm" id="quick-form">Quick Form</button></h4></li>
    						<script>
    							$('#quick-form').on('click', function() {
    								$('#form_hider').fadeIn();
+   								$('#quick-form').hide();
    							});
    						</script>
 					</ul>
