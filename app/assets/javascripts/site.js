@@ -96,32 +96,22 @@
 			}
 			else if (estimate > 675){
 				var timer = 1500;
-				alertBox("Woah! Your event will need to be discussed further", {
-					timer: timer
+				alertBox("Woah! Your event will need to be discussed further. Please call us to discuss.", {
+					timer: timer,
+					redirect_address: '#home_main'
 				});
-				setTimeout(function() {
-					alertBox("Please call us to discuss.", {
-						redirect_address: '#home_main',
-						timer: 750
-					});
-					$('#call-now').addClass('highlight')
-				}, timer);
+				$('#call-now').addClass('highlight')
 			}
 			else if (is_in_florida === -1){
 				alertBox("Sorry, Mac Parking only serves the state of Florida");
 			}
 			else if (is_in_miami_beach != -1){
 				var timer = 2000;
-				alertBox("Uh oh, the City of Miami Beach requires specific permits.", {
-					timer: timer
+				alertBox("Uh oh, the City of Miami Beach requires specific permits. Please call us to discuss.", {
+					timer: timer,
+					redirect_address: '#home_main'
 				});
-				setTimeout(function() {
-					alertBox("Please call us to discuss.", {
-						redirect_address: '#home_main',
-						timer: 750
-					});
-					$('#call-now').addClass('highlight')
-				}, timer);
+				$('#call-now').addClass('highlight')
 			}
 			else {
 				$('.estimate').text(estimate);
