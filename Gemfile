@@ -17,6 +17,9 @@ gem 'jquery-visibility-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+# Ray gun test
+gem 'raygun4ruby'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

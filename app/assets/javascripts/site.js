@@ -79,15 +79,55 @@
 	});
 	$('#estimateBtn').on('click', function(event) {
 		if (estimateValidate()) {
-			var guestCount = $('#guestCount').val()
-			var expectedCars = Math.ceil(guestCount / 2)
-			var attendants = Math.ceil(expectedCars / 15)
-			var estimate = attendants * 95 + 200
-			if (guestCount > 0 && estimate > 0) {
-				$('.estimate').text(estimate)
+			// Get guest count
+			var guestCount = $('#guestCount').val();
+			// Divide total cars by 2
+			var expectedCars = Math.ceil(guestCount / 2);
+			// 1 attendant per 15 + 1 doorman
+			var attendants = Math.ceil(expectedCars / 15) + 1;
+			// Attendants + 1 doorman + 200 service
+			var estimate = attendants * 95 + 200;
+			var address = autocomplete.getPlace();
+			var is_in_florida = address.formatted_address.indexOf('FL');
+			var is_in_miami_beach = address.formatted_address.indexOf(', Miami Beach');
+			console.log("In Miami BEach?", is_in_miami_beach);
+			if (guestCount <= 0 && estimate <= 0) {
+				alertBox("Sorry, please give us a call to discuss further.");
+			}
+			else if (estimate > 675){
+				var timer = 1500;
+				alertBox("Woah! Your event will need to be discussed further", {
+					timer: timer
+				});
+				setTimeout(function() {
+					alertBox("Please call us to discuss.", {
+						redirect_address: '#home_main',
+						timer: 750
+					});
+					$('#call-now').addClass('highlight')
+				}, timer);
+			}
+			else if (is_in_florida === -1){
+				alertBox("Sorry, Mac Parking only serves the state of Florida");
+			}
+			else if (is_in_miami_beach != -1){
+				var timer = 2000;
+				alertBox("Uh oh, the City of Miami Beach requires specific permits.", {
+					timer: timer
+				});
+				setTimeout(function() {
+					alertBox("Please call us to discuss.", {
+						redirect_address: '#home_main',
+						timer: 750
+					});
+					$('#call-now').addClass('highlight')
+				}, timer);
+			}
+			else {
+				$('.estimate').text(estimate);
 			}
 		}
-	})
+	});
 	function estimateValidate() {
 		if ($('#estimateEmail').val() != ''){
 			$('#estimateEmailLabel').css('font-size', '1em')
