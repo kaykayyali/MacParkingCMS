@@ -90,6 +90,13 @@ get '/invoices/:id' => 'invoices#show'
  resources :locations
 
 
+
+
+ # Site 2
+get '/2' => 'newsite#index'
+
+
+
  #sms
   post 'sms/test' => 'sms_handler#test'
   post 'sms/send_message' => 'sms_handler#send_message'

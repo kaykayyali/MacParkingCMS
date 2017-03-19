@@ -1,0 +1,2 @@
+module NewsiteHelper
+end

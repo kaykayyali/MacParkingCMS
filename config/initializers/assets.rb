@@ -12,3 +12,5 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( moment.min.js )
 Rails.application.config.assets.precompile += %w( fullcalendar.js )
 Rails.application.config.assets.precompile += %w( fullcalendar.css )
+Rails.application.config.assets.precompile += %w( newsite.css )
+Rails.application.config.assets.precompile += %w( newsite.js )
