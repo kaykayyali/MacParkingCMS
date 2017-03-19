@@ -1,3 +1,6 @@
+var autocomplete_initialized = false;
+var autocomplete;
+var carousel_interval;
 (function($) {
   $.fn.visible = function(partial) {
     
@@ -37,8 +40,21 @@
 	  }
 	}
 $(function(){
+	$('#estimate').one('click', function() {
+		if (!autocomplete_initialized) {
+			autocomplete_initialized = true;
+			initAutocomplete();
+		}
+	});
 	$('.button-collapse').sideNav();
     $('.parallax').parallax();
+    $('.carousel').carousel({ indicators: true});
+    carousel_interval = setInterval(function() {
+    	$('.carousel').carousel('next');
+    }, 3000);
+    $('.indicator-item').one('click', function() {
+    	window.clearInterval(carousel_interval);
+    });
     $('.modal').modal();
 	var win = $(window);
 	var allMods = $(".slideIn");
@@ -90,10 +106,12 @@ $(function(){
 				});
 				$('#call-now').addClass('highlight')
 			}
-			else if (is_in_florida === -1){
+			else if (is_in_florida === -1) {
+				$('#estimate_modal').modal('close');
 				alertBox("Sorry, Mac Parking only serves the state of Florida");
 			}
-			else if (is_in_miami_beach != -1){
+			else if (is_in_miami_beach != -1) {
+				$('#estimate_modal').modal('close');
 				var timer = 2000;
 				alertBox("Uh oh, the City of Miami Beach requires specific permits. Please call us to discuss.", {
 					timer: timer,
@@ -102,7 +120,8 @@ $(function(){
 				$('#call-now').addClass('highlight')
 			}
 			else {
-				$('.estimate').text(estimate);
+				$('#estimate_modal').scrollTop($('#estimate_modal').outerHeight());
+				$('.estimate').text('$' + estimate + '.00');
 			}
 		}
 	});
@@ -166,3 +185,4 @@ $(function(){
 	}
 
 });
+
