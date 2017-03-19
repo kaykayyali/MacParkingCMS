@@ -136,3 +136,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', end
 .highlight {
   box-shadow: 0 0 10px 4px #fefff2;
 }
+
+div.yelp_button {
+  display: inline-block !important;
+}
+
+
+.yelp_button img {
+  width: 57px;
+  height: 22px;
+ }
