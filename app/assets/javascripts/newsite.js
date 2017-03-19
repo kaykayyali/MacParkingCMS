@@ -39,6 +39,7 @@
 $(function(){
 	$('.button-collapse').sideNav();
     $('.parallax').parallax();
+    $('.modal').modal();
 	var win = $(window);
 	var allMods = $(".slideIn");
 
