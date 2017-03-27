@@ -20,6 +20,10 @@ gem 'jquery-rails'
 # Ray gun test
 gem 'raygun4ruby'
 
+
+# Send Grid
+gem 'sendgrid-ruby'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.

@@ -81,6 +81,10 @@ $(function(){
 	  });
 	  
 	});
+	$('#estimate-ok').on('click', function(event) {
+		$('body').scrollTop($('#request-now').outerHeight());
+		$('#request-now').addClass('highlight');
+	});
 	$('#estimateBtn').on('click', function(event) {
 		if (estimateValidate()) {
 			// Get guest count
