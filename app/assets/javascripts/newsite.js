@@ -40,6 +40,8 @@ var carousel_interval;
 	  }
 	}
 $(function(){
+	console.log("Location" , location.hash.substring(1));
+	$('#' + location.hash.substring(1)).addClass('highlight');
 	$('#estimate').one('click', function() {
 		if (!autocomplete_initialized) {
 			autocomplete_initialized = true;
@@ -83,7 +85,8 @@ $(function(){
 	});
 	$('#estimate-ok').on('click', function(event) {
 		$('body').scrollTop($('#request-now').outerHeight());
-		$('#request-now').addClass('highlight');
+		highlight_anchor('request-now');
+		// $('#request-now').addClass('highlight');
 	});
 	$('#estimateBtn').on('click', function(event) {
 		if (estimateValidate()) {
@@ -108,7 +111,8 @@ $(function(){
 					timer: timer,
 					redirect_address: '#home_main'
 				});
-				$('#call-now').addClass('highlight')
+				highlight_anchor('call-now');
+				// $('#call-now').addClass('highlight')
 			}
 			else if (is_in_florida === -1) {
 				$('#estimate_modal').modal('close');
@@ -121,7 +125,8 @@ $(function(){
 					timer: timer,
 					redirect_address: '#home_main'
 				});
-				$('#call-now').addClass('highlight')
+				highlight_anchor('call-now');
+				// $('#call-now').addClass('highlight')
 			}
 			else {
 				$('#estimate_modal').scrollTop($('#estimate_modal').outerHeight());
@@ -189,4 +194,10 @@ $(function(){
 	}
 
 });
+
+
+var highlight_anchor = function(id) {
+	$('a').removeClass('highlight');
+	$('#' + id).addClass('highlight');
+};
 
